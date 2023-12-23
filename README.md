@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "dashboard"
+gem "dashboard", git: "https://github.com/edcommonwealth/Dashboard"
 ```
 
 And then execute:
@@ -16,13 +16,13 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
+And run the migrations:
 ```bash
-$ gem install dashboard
+bundle exec rake dashboard:install:migrations
 ```
 
 ## Contributing
 Contribution directions go here.
 
 ## License
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the GPL v3 license
