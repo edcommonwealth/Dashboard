@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    dashboard (0.1.0)
+    dashboard (0.1.1)
+      friendly_id (~> 5.4.0)
       rails (>= 7.1.2)
 
 GEM
@@ -97,6 +98,8 @@ GEM
     factory_bot_rails (6.4.2)
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -115,6 +118,7 @@ GEM
       net-smtp
     marcel (1.0.2)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     mutex_m (0.2.0)
     net-imap (0.4.8)
@@ -127,7 +131,8 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.7.0)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.15.5)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     pg (1.5.4)
     psych (5.1.2)

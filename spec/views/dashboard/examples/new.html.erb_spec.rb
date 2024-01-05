@@ -1,7 +1,8 @@
 require "rails_helper"
 
 module Dashboard
-  RSpec.xdescribe "dashboard/examples/new", type: :view do
+  include Engine.routes.url_helpers
+  RSpec.describe "dashboard/examples/new", type: :view do
     before(:each) do
       assign(:example, Example.new(
                          text: "MyString",

@@ -2,6 +2,7 @@ require "rails_helper"
 require "nokogiri"
 
 module Dashboard
+  include Engine.routes.url_helpers
   RSpec.describe "/dashboard/examples/index", type: :view do
     before(:each) do
       assign(:examples, [
