@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_05_041641) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "children", force: :cascade do |t|
+    t.text "text"
+    t.bigint "parent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_children_on_parent_id"
+  end
 
   create_table "dashboard_academic_years", force: :cascade do |t|
     t.string "range"
@@ -37,21 +45,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
 
   create_table "dashboard_admin_data_values", force: :cascade do |t|
     t.float "likert_score"
-    t.bigint "dashboard_school_id", null: false
+    t.bigint "school_id", null: false
     t.bigint "dashboard_admin_data_item_id", null: false
     t.bigint "dashboard_academic_year_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_academic_year_id"], name: "idx_on_dashboard_academic_year_id_1de27231d5"
     t.index ["dashboard_admin_data_item_id"], name: "idx_on_dashboard_admin_data_item_id_edae2faad3"
-    t.index ["dashboard_school_id"], name: "index_dashboard_admin_data_values_on_dashboard_school_id"
-  end
-
-  create_table "dashboard_atoms", force: :cascade do |t|
-    t.integer "survey_item"
-    t.text "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_dashboard_admin_data_values_on_school_id"
   end
 
   create_table "dashboard_categories", force: :cascade do |t|
@@ -60,14 +61,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
     t.string "slug"
     t.string "category_id"
     t.string "short_description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "dashboard_districts", force: :cascade do |t|
-    t.string "name"
-    t.string "slug"
-    t.integer "qualtrics_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -119,7 +112,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
   end
 
   create_table "dashboard_respondents", force: :cascade do |t|
-    t.bigint "dashboard_school_id", null: false
+    t.bigint "school_id", null: false
     t.bigint "dashboard_academic_year_id", null: false
     t.integer "total_students"
     t.float "total_teachers"
@@ -140,20 +133,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_academic_year_id"], name: "index_dashboard_respondents_on_dashboard_academic_year_id"
-    t.index ["dashboard_school_id"], name: "index_dashboard_respondents_on_dashboard_school_id"
+    t.index ["school_id"], name: "index_dashboard_respondents_on_school_id"
   end
 
   create_table "dashboard_response_rates", force: :cascade do |t|
     t.bigint "dashboard_subcategory_id", null: false
-    t.bigint "dashboard_school_id", null: false
+    t.bigint "school_id", null: false
     t.bigint "dashboard_academic_year_id", null: false
     t.float "school_response_rate"
     t.float "teacher_response_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_academic_year_id"], name: "index_dashboard_response_rates_on_dashboard_academic_year_id"
-    t.index ["dashboard_school_id"], name: "index_dashboard_response_rates_on_dashboard_school_id"
     t.index ["dashboard_subcategory_id"], name: "index_dashboard_response_rates_on_dashboard_subcategory_id"
+    t.index ["school_id"], name: "index_dashboard_response_rates_on_school_id"
   end
 
   create_table "dashboard_scales", force: :cascade do |t|
@@ -162,19 +155,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_measure_id"], name: "index_dashboard_scales_on_dashboard_measure_id"
-  end
-
-  create_table "dashboard_schools", force: :cascade do |t|
-    t.string "name"
-    t.bigint "dashboard_district_id", null: false
-    t.text "description"
-    t.string "slug"
-    t.integer "qualtrics_code"
-    t.integer "dese_id"
-    t.boolean "is_hs"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["dashboard_district_id"], name: "index_dashboard_schools_on_dashboard_district_id"
   end
 
   create_table "dashboard_scores", force: :cascade do |t|
@@ -221,7 +201,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
 
   create_table "dashboard_survey_item_responses", force: :cascade do |t|
     t.integer "likert_score"
-    t.bigint "dashboard_school_id", null: false
+    t.bigint "school_id", null: false
     t.bigint "dashboard_survey_item_id", null: false
     t.bigint "dashboard_academic_year_id", null: false
     t.bigint "dashboard_student_id"
@@ -238,10 +218,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
     t.index ["dashboard_ell_id"], name: "index_dashboard_survey_item_responses_on_dashboard_ell_id"
     t.index ["dashboard_gender_id"], name: "index_dashboard_survey_item_responses_on_dashboard_gender_id"
     t.index ["dashboard_income_id"], name: "index_dashboard_survey_item_responses_on_dashboard_income_id"
-    t.index ["dashboard_school_id"], name: "index_dashboard_survey_item_responses_on_dashboard_school_id"
     t.index ["dashboard_sped_id"], name: "index_dashboard_survey_item_responses_on_dashboard_sped_id"
     t.index ["dashboard_student_id"], name: "index_dashboard_survey_item_responses_on_dashboard_student_id"
     t.index ["dashboard_survey_item_id"], name: "idx_on_dashboard_survey_item_id_3f6652fbc6"
+    t.index ["school_id"], name: "index_dashboard_survey_item_responses_on_school_id"
   end
 
   create_table "dashboard_survey_items", force: :cascade do |t|
@@ -258,18 +238,45 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
     t.index ["dashboard_scale_id"], name: "index_dashboard_survey_items_on_dashboard_scale_id"
   end
 
+  create_table "districts", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "qualtrics_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.bigint "district_id", null: false
+    t.text "description"
+    t.string "slug"
+    t.integer "qualtrics_code"
+    t.integer "dese_id"
+    t.boolean "is_hs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["district_id"], name: "index_schools_on_district_id"
+  end
+
+  add_foreign_key "children", "parents"
   add_foreign_key "dashboard_admin_data_items", "dashboard_scales"
   add_foreign_key "dashboard_admin_data_values", "dashboard_academic_years"
   add_foreign_key "dashboard_admin_data_values", "dashboard_admin_data_items"
-  add_foreign_key "dashboard_admin_data_values", "dashboard_schools"
+  add_foreign_key "dashboard_admin_data_values", "schools"
   add_foreign_key "dashboard_measures", "dashboard_subcategories"
   add_foreign_key "dashboard_respondents", "dashboard_academic_years"
-  add_foreign_key "dashboard_respondents", "dashboard_schools"
+  add_foreign_key "dashboard_respondents", "schools"
   add_foreign_key "dashboard_response_rates", "dashboard_academic_years"
-  add_foreign_key "dashboard_response_rates", "dashboard_schools"
   add_foreign_key "dashboard_response_rates", "dashboard_subcategories"
+  add_foreign_key "dashboard_response_rates", "schools"
   add_foreign_key "dashboard_scales", "dashboard_measures"
-  add_foreign_key "dashboard_schools", "dashboard_districts"
   add_foreign_key "dashboard_student_races", "dashboard_races"
   add_foreign_key "dashboard_student_races", "dashboard_students"
   add_foreign_key "dashboard_subcategories", "dashboard_categories", column: "dashboard_categories_id"
@@ -277,9 +284,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
   add_foreign_key "dashboard_survey_item_responses", "dashboard_ells"
   add_foreign_key "dashboard_survey_item_responses", "dashboard_genders"
   add_foreign_key "dashboard_survey_item_responses", "dashboard_incomes"
-  add_foreign_key "dashboard_survey_item_responses", "dashboard_schools"
   add_foreign_key "dashboard_survey_item_responses", "dashboard_speds"
   add_foreign_key "dashboard_survey_item_responses", "dashboard_students"
   add_foreign_key "dashboard_survey_item_responses", "dashboard_survey_items"
+  add_foreign_key "dashboard_survey_item_responses", "schools"
   add_foreign_key "dashboard_survey_items", "dashboard_scales"
+  add_foreign_key "schools", "districts"
 end

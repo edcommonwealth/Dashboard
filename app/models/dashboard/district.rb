@@ -1,7 +1,8 @@
 module Dashboard
   class District < ApplicationRecord
+    self.table_name = "districts"
     has_many :schools, class_name: "Dashboard::School"
-    has_many :dashboard_schools, class_name: "Dashboard::School"
+    has_many :schools, class_name: "Dashboard::School"
 
     validates :name, presence: true
 

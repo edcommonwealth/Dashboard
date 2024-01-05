@@ -1,6 +1,6 @@
 module Dashboard
   class AdminDataValue < ApplicationRecord
-    belongs_to :dashboard_school
+    belongs_to :school
     belongs_to :dashboard_admin_data_item
     belongs_to :dashboard_academic_year
 

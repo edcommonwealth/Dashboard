@@ -1,7 +1,7 @@
 class CreateDashboardRespondents < ActiveRecord::Migration[7.1]
   def change
     create_table :dashboard_respondents do |t|
-      t.references :dashboard_school, null: false, foreign_key: true
+      t.references :school, null: false, foreign_key: true
       t.references :dashboard_academic_year, null: false, foreign_key: true
       t.integer :total_students
       t.float :total_teachers

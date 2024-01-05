@@ -1,6 +1,6 @@
 module Dashboard
   class Respondent < ApplicationRecord
-    belongs_to :dashboard_school
+    belongs_to :school
     belongs_to :dashboard_academic_year
 
     validates :school, uniqueness: { scope: :academic_year }

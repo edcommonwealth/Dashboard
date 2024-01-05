@@ -1,6 +1,7 @@
 module Dashboard
   class School < ApplicationRecord
-    belongs_to :dashboard_district, class_name: "Dashboard::District"
+    self.table_name = "schools"
+    belongs_to :district, class_name: "District", primary_key: :id
 
     has_many :dashboard_survey_item_responses, dependent: :delete_all
 

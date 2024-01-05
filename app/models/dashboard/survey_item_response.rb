@@ -3,7 +3,7 @@ module Dashboard
     TEACHER_RESPONSE_THRESHOLD = 2
     STUDENT_RESPONSE_THRESHOLD = 10
 
-    belongs_to :dashboard_school
+    belongs_to :school
     belongs_to :dashboard_survey_item
     belongs_to :dashboard_academic_year
     belongs_to :dashboard_student, optional: true

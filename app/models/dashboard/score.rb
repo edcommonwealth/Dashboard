@@ -1,7 +1,7 @@
 module Dashboard
   class Score < ApplicationRecord
     belongs_to :dashboard_measure
-    belongs_to :dashboard_school
+    belongs_to :school
     belongs_to :dashboard_academic_year
     belongs_to :dashboard_race
 

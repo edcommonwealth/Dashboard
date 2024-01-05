@@ -31,7 +31,7 @@ module Dashboard
 
     def schools
       if district.present?
-        district.dashboard_schools.order(:name).map do |school|
+        district.schools.order(:name).map do |school|
           [school.name, school.id]
         end
       else
