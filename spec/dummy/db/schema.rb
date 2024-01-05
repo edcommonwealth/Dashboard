@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_05_040909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.index ["dashboard_academic_year_id"], name: "idx_on_dashboard_academic_year_id_1de27231d5"
     t.index ["dashboard_admin_data_item_id"], name: "idx_on_dashboard_admin_data_item_id_edae2faad3"
     t.index ["dashboard_school_id"], name: "index_dashboard_admin_data_values_on_dashboard_school_id"
+  end
+
+  create_table "dashboard_atoms", force: :cascade do |t|
+    t.integer "survey_item"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "dashboard_categories", force: :cascade do |t|
@@ -217,11 +224,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.bigint "dashboard_school_id", null: false
     t.bigint "dashboard_survey_item_id", null: false
     t.bigint "dashboard_academic_year_id", null: false
-    t.bigint "dashboard_student_id", null: false
-    t.bigint "dashboard_gender_id", null: false
-    t.bigint "dashboard_income_id", null: false
-    t.bigint "dashboard_ell_id", null: false
-    t.bigint "dashboard_sped_id", null: false
+    t.bigint "dashboard_student_id"
+    t.bigint "dashboard_gender_id"
+    t.bigint "dashboard_income_id"
+    t.bigint "dashboard_ell_id"
+    t.bigint "dashboard_sped_id"
     t.string "response_id"
     t.integer "grade"
     t.datetime "recorded_date"

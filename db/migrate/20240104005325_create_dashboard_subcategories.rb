@@ -4,7 +4,7 @@ class CreateDashboardSubcategories < ActiveRecord::Migration[7.1]
       t.string :name
       t.text :description
       t.string :subcategory_id
-      t.references :dashboard_category_id, null: false, foreign_key: true
+      t.references :dashboard_categories, null: false, foreign_key: true
 
       t.timestamps
     end

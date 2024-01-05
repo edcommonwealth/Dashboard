@@ -1,9 +1,9 @@
 module Dashboard
   class SurveyItem < ApplicationRecord
-    belongs_to :dashboard_scale
+    # belongs_to :dashboard_scale
 
-    has_one :dashboard_measure, through: dashboard_scale
-    has_one :dashboard_subcategory, through: dashboard_measure
+    # has_one :dashboard_measure, through: dashboard_scale
+    # has_one :dashboard_subcategory, through: dashboard_measure
 
     has_many :dashboard_survey_item_responses
 
