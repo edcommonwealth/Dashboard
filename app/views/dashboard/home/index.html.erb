@@ -18,8 +18,9 @@
                         action: "change->form#submit"
                       }) do |f| %>
 
+                      <%= turbo_frame_tag "schools" do %>
                         <div class="d-flex">
-                          <% if @districts.count > 1 %>
+                          <% if District.count > 1 %>
                             <div class="row">
                               <%= f.select :district,  @districts,
                                 {include_blank: "Select a District", selected: params[:district] } , {id: "district-dropdown", class: "form-select", hidden: @districts.count == 1} %>
@@ -39,6 +40,7 @@
 
                         </div>
                       <% end %>
+                    <% end %>
 
       </div>
     </div>
