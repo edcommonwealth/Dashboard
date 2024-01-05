@@ -14,6 +14,8 @@ module Dashboard
 
     has_one :dashboard_measure, through: :dashboard_survey_item
 
+    validates :likert_score, numericality: { greater_than: 0, less_than_or_equal_to: 5 }
+
     scope :exclude_boston, lambda {
                              includes(school: :district).where.not("district.name": "Boston")
                            }
