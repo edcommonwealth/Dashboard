@@ -75,4 +75,6 @@ RSpec.configure do |config|
       include Dashboard::Engine.routes.url_helpers
     end
   end
+
+  config.include Dashboard::Engine.routes.url_helpers
 end
