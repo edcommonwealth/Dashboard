@@ -1,11 +1,10 @@
 module Dashboard
   class School < ApplicationRecord
-    self.table_name = "schools"
-    belongs_to :district, class_name: "District", primary_key: :id
+    belongs_to :district, class_name: "District", foreign_key: :dashboard_district_id
 
-    has_many :dashboard_survey_item_responses, dependent: :delete_all
+    # has_many :dashboard_survey_item_responses, dependent: :delete_all
 
-    # validates :name, presence: true
+    validates :name, presence: true
 
     scope :alphabetic, -> { order(name: :asc) }
     scope :school_hash, -> { all.map { |school| [school.dese_id, school] }.to_h }
