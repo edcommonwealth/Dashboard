@@ -1,0 +1,132 @@
+@import "partials/colors";
+@import "partials/bootstrap-overrides";
+@import "partials/sqm_bootstrap";
+@import "partials/clear-margin-padding";
+@import "partials/fonts";
+@import "partials/borders";
+@import "partials/overview";
+@import "partials/navigation";
+@import "partials/buttons";
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "partials/footer";
+@import "partials/forms";
+
+.height-56 {
+  height: 56px;
+}
+
+.card {
+  @extend .bg-color-white;
+  @extend .mb-5;
+  @extend .p-7;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba($black, 0.25);
+}
+
+.construct-id {
+  @extend .font-cabin;
+  @extend .weight-700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  color: $gray-1;
+  line-height: 18px;
+}
+
+.subcategory-section {
+  @extend .mt-5;
+  @extend .bg-color-white;
+  box-shadow: 0 0 3px rgba($black, 0.25);
+}
+
+.gauge-graph-lg {
+  width: 468px;
+  height: auto;
+}
+
+.gauge-graph-sm {
+  width: 268px;
+  height: auto;
+}
+
+.gauge-title {
+  line-height: 1.2;
+  max-width: 10ch;
+  text-align: center;
+  bottom: 0;
+  position: absolute;
+}
+
+.measure-section {
+  flex-basis: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.measure-description {
+  text-align: center;
+}
+
+.measure-card {
+  @extend .bg-gray;
+  box-shadow: 0px -1px 0px $gray-2;
+}
+
+.arrow-container {
+  position: relative;
+  top: -50px;
+  left: 220px;
+}
+
+.arrow {
+  background-color: $gray-3;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  width: 96px;
+  height: 48px;
+  position: absolute;
+  top: 2px;
+  left: 1px;
+}
+
+.arrow-shadow {
+  background-color: $gray-2;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  width: 98px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.measure-accordion {
+  width: 100%;
+}
+
+.measure-accordion-button {
+  background-color: $gray-3;
+  border-color: $gray-2;
+  @extend .font-cabin;
+  @extend .font-size-14;
+  @extend .weight-700;
+}
+
+.measure-accordion-body {
+  background-color: $gray-3;
+}
+
+.response-rate {
+  background-color: $gray-3;
+  border: 1px solid;
+  border-color: $gray-2;
+  width: 150px;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.response-rate-percentage {
+  font-size: 20px;
+  @extend .sub-header-4;
+}

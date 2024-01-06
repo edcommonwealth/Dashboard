@@ -1,0 +1,176 @@
+$black: #3E3A38;
+$gray-1: #595959;
+$gray-2: #CECECE;
+$gray-3: #F3F3F3;
+$light-blue: #FAFCFD;
+$white: #FFFFFF;
+
+$blue: #01788E;
+$dark-blue: #004D61;
+
+$red: #C93047;
+$dark-red: #920020;
+
+$gold: #FFC857;
+$light-gold: #FFFAEE;
+$purple: #49416D;
+$light-purple: #EDECF0;
+
+$teal: #00B0B3;
+$lime: #B2D236;
+
+$warning: $gold;
+$watch: $gold;
+$growth: $gold;
+$approval: $purple;
+$ideal: $purple;
+
+:root {
+  --color-purple: #{$purple};
+  --color-gold: #{$gold};
+}
+
+.color-red {
+  color: $red;
+}
+
+.color-black {
+  color: $black;
+}
+
+.color-white {
+  color: $white;
+}
+
+.color-blue {
+  color: $blue;
+}
+
+.color-lime {
+  color: $lime;
+}
+
+.color-teal {
+  color: $teal;
+}
+
+.color-gray-2 {
+  color: $gray-2;
+}
+
+.bg-color-light-blue {
+  background-color: $light-blue;
+}
+
+.bg-color-blue {
+  background-color: $blue;
+}
+
+.bg-color-purple {
+  background-color: $purple;
+}
+
+.bg-color-light-purple {
+  background-color: $light-purple;
+}
+
+.bg-color-gold {
+  background-color: $gold;
+}
+
+.bg-color-light-gold {
+  background-color: $light-gold;
+}
+
+.bg-color-lime {
+  color: $lime;
+}
+
+.bg-color-teal {
+  color: $teal;
+}
+
+.bg-color-white {
+  background-color: $white;
+}
+
+.bg-color-gray-2 {
+  background-color: $gray-2;
+}
+
+.bg-color-gray-3 {
+  background-color: $gray-3;
+}
+
+.fill-black {
+  fill: $black;
+}
+
+.bg-gray {
+  background-color: $gray-3;
+}
+
+.bg-warning {
+  background-color: $warning;
+}
+
+.bg-watch {
+  background-color: $watch;
+}
+
+.bg-growth {
+  background-color: $growth;
+}
+
+.bg-approval {
+  background-color: $approval;
+}
+
+.bg-ideal {
+  background-color: $ideal;
+}
+
+.bg-fill-warning,
+.bg-fill-watch,
+.bg-fill-growth
+{
+  fill: $light-gold;
+}
+
+.bg-fill-approval,
+.bg-fill-ideal
+{
+  fill: $light-purple;
+}
+
+.fill-warning {
+  fill: $warning;
+}
+
+.fill-watch {
+  fill: $watch;
+}
+
+.fill-growth {
+  fill: $growth;
+}
+
+.fill-approval {
+  fill: $approval;
+}
+
+.fill-ideal {
+  fill: $ideal;
+}
+
+.stroke-black {
+  stroke: $black;
+}
+
+.stroke-gray-1 {
+  stroke: $gray-1;
+}
+
+.stroke-gray-2 {
+  stroke: $gray-2;
+}

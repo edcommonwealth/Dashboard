@@ -1,0 +1,75 @@
+@import "partials/colors";
+@import "bootstrap/scss/bootstrap";
+@import "partials/bootstrap-overrides";
+@import "partials/clear-margin-padding";
+@import "partials/fonts";
+@import "partials/borders";
+@import "partials/footer";
+
+.hero-image {
+  background-image: url(hero.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.hero-text {
+  color: $white;
+  text-align: center;
+}
+
+.hero-description {
+  max-width: 588px;
+  margin: auto;
+  font-size: 20px;
+}
+
+.framework-wheel-container {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .align-items-center;
+
+  img {
+    width: 442px;
+    max-width: 100%;
+  }
+
+  p {
+    color: $gray-1;
+    font-size: 12px;
+    max-width: 410px;
+    @extend .text-center;
+    @extend .bg-color-gray-3;
+    @extend .p-3;
+    @extend .border-radius-8;
+  }
+}
+
+.welcome-controls {
+  @extend .py-5;
+}
+
+.btn-secondary {
+  @include button-variant($black, transparent, $white,
+    $gray-1, transparent, $white,
+    $black, $black, $white,
+    $gray-2, transparent, $white);
+}
+
+#landing-accordion {
+  max-width: 550px;
+}
+
+.about-mciea {
+  margin: auto;
+  max-width: 792px;
+  @extend .color-white;
+
+  .btn {
+    @extend .font-bitter;
+    @extend .font-size-14;
+    @extend .weight-700;
+  }
+}

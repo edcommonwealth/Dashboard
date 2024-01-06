@@ -1,0 +1,134 @@
+@import 'bootstrap/scss/bootstrap';
+
+.graph-header {
+  @extend .font-bitter;
+  @extend .weight-700;
+}
+
+.graph-footer {
+  font-family: 'Cabin', sans-serif;
+}
+
+.harvey-ball-legend {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @extend .p-3;
+  @extend .bg-color-gray-3;
+  @extend .border-radius-8;
+}
+
+.subcategory-card {
+  @extend .p-3;
+  @extend .body-small;
+}
+
+.subcategory-card__benchmark-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  @extend .my-3;
+}
+
+.subcategory-card__circle {
+  min-width: 24px;
+  min-height: 24px;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @extend .me-3;
+}
+
+.subcategory-card__benchmark-label {
+  font-size: 30px;
+}
+
+.school-quality-frameworks {
+  display: grid;
+  row-gap: map-get($spacers, 4);
+  column-gap: map-get($spacers, 5);
+  grid-auto-flow: column;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows:  repeat(4, max-content);
+}
+
+.zone-header {
+  @extend .sub-header-4;
+}
+
+.subcategory-card__circle:focus {
+  outline: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba($blue, 0.35);
+}
+
+.harvey-ball {
+  stroke: $black;
+}
+
+.harvey-ball--approval, .harvey-ball--ideal {
+  fill: $purple;
+}
+
+.harvey-ball--warning, .harvey-ball--watch, .harvey-ball--growth {
+  fill: $gold;
+}
+
+.harvey-ball--insufficient_data {
+  stroke: $gray-2;
+  fill: $gray-3;
+}
+
+.limited-availability-indicator {
+  color: white;
+  background-color: black;
+  line-height: 30px;
+  border-radius: 50%;
+  width: 20px;
+}
+
+.overall-response-rate-row {
+  width: 55%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: -23px;
+}
+
+.overall-response-rate-container {
+  padding: 0.4em 0.7em;
+  width: 48%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $gray-1;
+  @extend .bg-color-gray-3;
+  @extend .border-radius-8;
+  @extend .font-size-14
+}
+
+@media only screen and (min-width: 768px){
+.measure-row-label {
+  width: 170px;
+}
+  }
+@media only screen and (min-width: 1000px){
+.measure-row-label {
+  width: 200px;
+}
+
+}
+@media only screen and (min-width: 1200px){
+.measure-row-label {
+  width: 250px;
+}
+
+}
+@media only screen and (min-width: 1400px){
+.measure-row-label {
+  width: 500px;
+}
+
+}

@@ -1,0 +1,24 @@
+/* @import 'colors'; */
+/* @import 'fonts'; */
+
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba($blue, 0.35);
+}
+
+.nav-tabs {
+  margin-bottom: -1rem;
+
+  .nav-link {
+    @extend .font-bitter;
+    background-color: $dark-blue;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba($white, 0.35);
+    }
+  }
+}
+
+.nav-item {
+  margin-right: 1px;
+}

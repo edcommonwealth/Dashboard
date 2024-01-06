@@ -1,0 +1,60 @@
+@import 'colors';
+/* @import 'partials/fonts'; */
+
+$spacer: 0.5rem;
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 2),
+  5: ($spacer * 3),
+  6: ($spacer * 4),
+  7: ($spacer * 5),
+  8: ($spacer * 6),
+  9: ($spacer * 7),
+  10: ($spacer * 8),
+  11: ($spacer * 9),
+  12: ($spacer * 10),
+);
+
+$font-family-base: 'Cabin', sans-serif;
+$body-color: $black;
+
+$alert-border-radius: 0.5rem;
+$alert-color-scale: 0%;
+$alert-border-width: 0;
+
+$headings-font-family: 'Bitter', serif;
+$headings-font-weight: 700;
+
+$form-select-border-radius: 0;
+$form-select-indicator-color: $blue;
+$input-border-radius: 0;
+$input-btn-focus-color-opacity: 0.35;
+$btn-border-radius: 0;
+
+$btn-close-width: 1.5em;
+$btn-close-opacity: 1;
+
+$nav-link-color: $white;
+$nav-link-font-weight: 600;
+$nav-link-hover-color: $nav-link-color;
+$nav-tabs-link-active-bg: $light-blue;
+$nav-tabs-link-hover-border-color: rgba($white, 0.5);
+$nav-tabs-border-color: transparent;
+$nav-tabs-border-radius: 15px;
+
+$accordion-border-radius: 8px;
+$accordion-button-active-bg: $gray-3;
+$accordion-icon-width: 16px;
+$accordion-icon-color: $blue;
+$accordion-button-active-color: $black;
+
+$popover-border-color: $gray-2;
+$popover-border-radius: 4px;
+$popover-body-padding-x: map-get($spacers, 4);
+$popover-body-padding-y: map-get($spacers, 4);
+
+$modal-header-border-color: transparent;
+$modal-content-border-radius: 0;
