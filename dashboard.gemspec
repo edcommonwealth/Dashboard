@@ -22,8 +22,19 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
 
+  spec.add_dependency "activerecord-import"
+  spec.add_dependency "bcrypt_pbkdf"
+  spec.add_dependency "cssbundling-rails"
+  spec.add_dependency "ed25519"
   spec.add_dependency "friendly_id", "~> 5.4.0"
+  spec.add_dependency "jsbundling-rails"
+  spec.add_dependency "net-sftp"
   spec.add_dependency "rails", ">= 7.1.2"
+  spec.add_dependency "standard_deviation"
+  spec.add_dependency "stimulus-rails"
+  spec.add_dependency "turbo-rails"
+  spec.add_dependency "watir"
+
   spec.add_development_dependency "factory_bot_rails"
   spec.add_development_dependency "rspec-rails"
 end

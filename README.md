@@ -18,7 +18,17 @@ $ bundle
 
 And run the migrations:
 ```bash
-bundle exec rake dashboard:install:migrations
+./bin/rails dashboard:install:migrations
+```
+
+Install javascript bundler
+```bash
+./bin/rails javascript:install:esbuild
+```
+
+Install css bundler
+```bash
+./bin/rails css:install:bootstrap
 ```
 
 ## Contributing

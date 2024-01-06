@@ -8,6 +8,7 @@ gem "puma"
 
 gem "pg"
 
+gem "cssbundling-rails"
 gem "sprockets-rails"
 
 group :development, :test do
