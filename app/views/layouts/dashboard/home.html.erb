@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Dashboard</title>
+  <head>
+    <title>ECP</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
     <meta name="description" content="A school quality framework with multiple measures that offers a fair and comprehensive picture of school performance">
@@ -18,11 +18,25 @@
     <%= stylesheet_link_tag 'dashboard/welcome', media: 'all', 'data-turbo-track': 'reload' %>
 
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
-    <%= render partial: 'layouts/google_analytics', locals: { google_analytics_id: @google_analytics_id } %>
-</head>
-<body>
+    <%= render partial: 'layouts/dashboard/google_analytics', locals: { google_analytics_id: @google_analytics_id } %>
+  </head>
+  <body>
 
-<%= yield %>
+    <header>
+      <div class="container">
+        <div class="row py-4 justify-content-between align-items-center">
+          <div class="col d-flex justify-content-start align-items-center">
+            <%= link_to image_tag('dashboard/logo.svg', alt: 'School Quality Measures Dashboard', size: "100x100"), welcome_path, class: 'me-7' %>
+          </div>
+        </div>
+      </div>
+    </header>
 
-</body>
+    <%= yield %>
+
+    <div>
+      <%= render partial: 'layouts/dashboard/footer' %>
+    </div>
+
+  </body>
 </html>
