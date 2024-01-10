@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dashboard (0.1.6)
+    dashboard (0.1.8)
       activerecord-import
       bcrypt_pbkdf
       cssbundling-rails
