@@ -1,8 +1,7 @@
 PATH
   remote: .
   specs:
-    dashboard (0.1.9)
-      activerecord-import
+    dashboard (0.1.10)
       bcrypt_pbkdf
       cssbundling-rails
       ed25519
@@ -10,6 +9,7 @@ PATH
       jsbundling-rails
       net-sftp
       rails (>= 7.1.2)
+      rspec-rails
       standard_deviation
       stimulus-rails
       turbo-rails
@@ -76,8 +76,6 @@ GEM
       activemodel (= 7.1.2)
       activesupport (= 7.1.2)
       timeout (>= 0.4.0)
-    activerecord-import (1.5.1)
-      activerecord (>= 4.2)
     activestorage (7.1.2)
       actionpack (= 7.1.2)
       activejob (= 7.1.2)
@@ -261,12 +259,10 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  cssbundling-rails
   dashboard!
   factory_bot_rails
   pg
   puma
-  rspec-rails
   sprockets-rails
 
 BUNDLED WITH
