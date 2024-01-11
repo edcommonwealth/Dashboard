@@ -9,5 +9,10 @@ module Dashboard
       g.fixture_replacement :factory_bot
       g.factory_bot dir: "spec/factories"
     end
+
+    # Ensure engine's assets are precompiled
+    initializer "dashboard.assets.precompile" do |app|
+      app.config.assets.precompile += %w[dashboard.js sqm.css welcome.css]
+    end
   end
 end
