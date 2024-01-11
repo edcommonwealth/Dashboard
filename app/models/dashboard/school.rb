@@ -1,5 +1,8 @@
 module Dashboard
   class School < ApplicationRecord
+    include FriendlyId
+    friendly_id :name, use: :slugged
+
     belongs_to :district, class_name: "District", foreign_key: :dashboard_district_id
 
     # has_many :dashboard_survey_item_responses, dependent: :delete_all
@@ -8,9 +11,6 @@ module Dashboard
 
     scope :alphabetic, -> { order(name: :asc) }
     scope :school_hash, -> { all.map { |school| [school.dese_id, school] }.to_h }
-
-    include FriendlyId
-    friendly_id :name, use: [:slugged]
 
     def self.find_by_district_code_and_school_code(district_code, school_code)
       School

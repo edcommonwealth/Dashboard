@@ -1,6 +1,6 @@
 module Dashboard
   class Subcategory < ApplicationRecord
-    belongs_to :dashboard_categories, class_name: "Dashboard::Category"
+    belongs_to :category, class_name: "Category", foreign_key: :dashboard_category_id
 
     has_many :dashboard_measures
     has_many :dashboard_survey_items, through: :dashboard_measures

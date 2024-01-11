@@ -1,6 +1,6 @@
 module Dashboard
   class District < ApplicationRecord
-    has_many :schools, class_name: "School", foreign_key: :id
+    has_many :schools, class_name: "School", foreign_key: :dashboard_district_id
 
     validates :name, presence: true
 

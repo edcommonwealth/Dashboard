@@ -1,7 +1,7 @@
 module Dashboard
   class Respondent < ApplicationRecord
-    belongs_to :school
-    belongs_to :dashboard_academic_year
+    belongs_to :school, class_name: "School", foreign_key: :dashboard_school_id
+    belongs_to :academic_year, class_name: "AcademicYear", foreign_key: :dashboard_academic_year_id
 
     validates :school, uniqueness: { scope: :academic_year }
 
