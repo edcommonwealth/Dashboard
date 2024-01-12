@@ -5,7 +5,7 @@ module Dashboard
 
     scope :sorted, -> { order(:category_id) }
 
-    has_many :subcategories, class_name: "Subcategory", foreign_key: :dashboard_category_id
+    has_many :subcategories, class_name: "Subcategory", foreign_key: :dashboard_categories_id
     has_many :measures, through: :subcategories
     has_many :admin_data_items, through: :measures
     has_many :scales, through: :subcategories

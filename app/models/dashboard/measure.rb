@@ -1,6 +1,6 @@
 module Dashboard
   class Measure < ApplicationRecord
-    belongs_to :dashboard_subcategory
+    belongs_to :subcategory, class_name: "Subcategory", foreign_key: :dashboard_subcategory_id
     has_one :dashboard_category, through: :dashboard_subcategory
     has_many :dashboard_scales
     has_many :dashboard_admin_data_items, through: :scales

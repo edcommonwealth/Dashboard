@@ -8,7 +8,7 @@ namespace :dashboard do
                                  "2023-24"
       seeder.seed_districts_and_schools Dashboard::Engine.root.join("data", "dashboard",
                                                                     "master_list_of_schools_and_districts.csv")
-      # seeder.seed_sqm_framework Dashboard::Engine.root.join("data", "dashboard", "sqm_framework.csv")
+      seeder.seed_sqm_framework Dashboard::Engine.root.join("data", "dashboard", "sqm_framework.csv")
       # seeder.seed_demographics Rails.root.join("data", "demographics.csv")
       # seeder.seed_enrollment Rails.root.join("data", "enrollment", "enrollment.csv")
       # seeder.seed_enrollment Rails.root.join("data", "enrollment", "nj_enrollment.csv")

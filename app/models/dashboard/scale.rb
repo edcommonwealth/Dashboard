@@ -1,9 +1,9 @@
 module Dashboard
   class Scale < ApplicationRecord
-    belongs_to :dashboard_measure
-    has_many :dashboard_survey_items
-    has_many :dashboard_survey_item_responses, through: :dashboard_survey_items
-    has_many :dashboard_admin_data_items
+    belongs_to :measure, class_name: "Measure", foreign_key: :dashboard_measure_id
+    has_many :survey_items
+    has_many :survey_item_responses, through: :survey_items
+    has_many :admin_data_items, class_name: "AdminDataItem", foreign_key: :admin_data_item_id
 
     def score(school:, academic_year:)
       @score ||= Hash.new do |memo, (school, academic_year)|

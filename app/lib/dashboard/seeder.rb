@@ -6,7 +6,7 @@ module Dashboard
         academic_years << { range: }
       end
 
-      AcademicYear.insert_all(academic_years, unique_by: [:id])
+      AcademicYear.upsert_all(academic_years)
     end
 
     def seed_districts_and_schools(csv_file)
@@ -30,7 +30,7 @@ module Dashboard
                      is_hs: marked?(hs), slug: school_name.parameterize }
       end
 
-      School.upsert_all(schools)
+      School.insert_all(schools)
 
       Respondent.joins(:school).where.not("school.dese_id": dese_ids).destroy_all
       School.where.not(dese_id: dese_ids).destroy_all
@@ -93,7 +93,7 @@ module Dashboard
         end
       end
 
-      AdminDataValue.where.not(admin_data_item_id: admin_data_item_ids).delete_all
+      AdminDataValue.where.not(admin_data_item: admin_data_item_ids).delete_all
       AdminDataItem.where.not(id: admin_data_item_ids).delete_all
     end
 

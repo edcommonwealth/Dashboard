@@ -1,12 +1,12 @@
 module Dashboard
   class Subcategory < ApplicationRecord
-    belongs_to :category, class_name: "Category", foreign_key: :dashboard_category_id
+    belongs_to :category, class_name: "Category", foreign_key: :dashboard_categories_id
 
-    has_many :dashboard_measures
-    has_many :dashboard_survey_items, through: :dashboard_measures
-    has_many :dashboard_admin_data_items, through: :dashboard_measures
-    has_many :dashboard_survey_items, through: :dashboard_measures
-    has_many :dashboard_scales, through: :dashboard_measures
+    has_many :measures, class_name: "Measure", foreign_key: :dashboard_subcategory_id
+    has_many :survey_items, through: :measures
+    has_many :admin_data_items, through: :measures
+    has_many :survey_items, through: :measures
+    has_many :scales, through: :measures
 
     def score(school:, academic_year:)
       measures.map do |measure|
