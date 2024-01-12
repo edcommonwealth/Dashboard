@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.string "range"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["range"], name: "index_dashboard_academic_years_on_range"
+    t.index ["range"], name: "index_dashboard_academic_years_on_range", unique: true
   end
 
   create_table "dashboard_admin_data_items", force: :cascade do |t|
@@ -160,6 +160,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_district_id"], name: "index_dashboard_schools_on_dashboard_district_id"
+    t.index ["dese_id"], name: "index_dashboard_schools_on_dese_id", unique: true
   end
 
   create_table "dashboard_scores", force: :cascade do |t|

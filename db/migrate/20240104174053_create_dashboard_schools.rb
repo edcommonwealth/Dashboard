@@ -10,5 +10,7 @@ class CreateDashboardSchools < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :dashboard_schools, :dese_id, unique: true
   end
 end
