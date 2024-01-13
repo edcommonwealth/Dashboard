@@ -22,5 +22,7 @@ class CreateDashboardRespondents < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :dashboard_respondents, %i[dashboard_school_id dashboard_academic_year_id], unique: true
   end
 end

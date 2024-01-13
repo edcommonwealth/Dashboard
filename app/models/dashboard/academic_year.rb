@@ -1,5 +1,7 @@
 module Dashboard
   class AcademicYear < ApplicationRecord
+    scope :by_range, -> { all.map { |ay| [ay.range, ay] }.to_h }
+
     def self.find_by_date(date)
       year = parse_year_range(date:)
       range = "#{year.start}-#{year.end.to_s[2, 3]}"

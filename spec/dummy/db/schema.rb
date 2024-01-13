@@ -126,6 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_academic_year_id"], name: "index_dashboard_respondents_on_dashboard_academic_year_id"
+    t.index ["dashboard_school_id", "dashboard_academic_year_id"], name: "idx_on_dashboard_school_id_dashboard_academic_year__17920cd0dd", unique: true
     t.index ["dashboard_school_id"], name: "index_dashboard_respondents_on_dashboard_school_id"
   end
 

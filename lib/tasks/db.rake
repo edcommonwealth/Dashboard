@@ -10,6 +10,10 @@ namespace :dashboard do
                                                                     "master_list_of_schools_and_districts.csv")
       seeder.seed_sqm_framework Dashboard::Engine.root.join("data", "dashboard", "sqm_framework.csv")
       seeder.seed_demographics Dashboard::Engine.root.join("data", "dashboard", "demographics.csv")
+
+      Dir.glob("#{Dashboard::Engine.root}/data/dashboard/enrollment/*.csv").each do |file|
+        seeder.seed_enrollment file
+      end
       # seeder.seed_enrollment Rails.root.join("data", "enrollment", "enrollment.csv")
       # seeder.seed_enrollment Rails.root.join("data", "enrollment", "nj_enrollment.csv")
       # seeder.seed_enrollment Rails.root.join("data", "enrollment", "wi_enrollment.csv")

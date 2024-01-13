@@ -49,7 +49,7 @@ module Dashboard
     private
 
     def schools
-      @schools = School.school_hash
+      @schools = School.by_dese_id
     end
 
     def genders

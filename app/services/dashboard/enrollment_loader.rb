@@ -4,11 +4,11 @@ require "csv"
 
 module Dashboard
   class EnrollmentLoader
-    def self.load_data(filepath:)
+    def load_data(filepath:)
       schools = []
       enrollments = []
       CSV.parse(File.read(filepath), headers: true) do |row|
-        row = EnrollmentRowValues.new(row:)
+        row = EnrollmentRowValues.new(row:, schools: school_hash, academic_years: academic_year_hash)
 
         next unless row.school.present? && row.academic_year.present?
 
@@ -17,113 +17,148 @@ module Dashboard
         enrollments << create_enrollment_entry(row:)
       end
 
-      # It's possible that instead of updating all columns on duplicate key, we could just update the student columns and leave total_teachers alone. Right now enrollment data loads before staffing data so it works correctly.
-      Respondent.import enrollments, batch_size: 1000,
-                                     on_duplicate_key_update: %i[pk k one two three four five six seven eight nine ten eleven twelve total_students]
+      Respondent.upsert_all(enrollments, unique_by: %i[dashboard_school_id dashboard_academic_year_id])
+    end
 
-      Respondent.where.not(school: schools).destroy_all
+    def clone_previous_year_data
+      years = AcademicYear.order(:range).last(2)
+      previous_year = years.first
+      current_year = years.last
+      respondents = []
+      School.all.each do |school|
+        Respondent.where(school:, academic_year: previous_year).each do |respondent|
+          respondents << { dashboard_school_id: respondent.school.id,
+                           dashboard_academic_year_id: current_year.id,
+                           pk: respondent.pk,
+                           k: respondent.k,
+                           one: respondent.one,
+                           two: respondent.two,
+                           three: respondent.three,
+                           four: respondent.four,
+                           five: respondent.five,
+                           six: respondent.six,
+                           seven: respondent.seven,
+                           eight: respondent.eight,
+                           nine: respondent.nine,
+                           ten: respondent.ten,
+                           eleven: respondent.eleven,
+                           twelve: respondent.twelve,
+                           total_students: respondent.total_students }
+        end
+      end
+      Respondent.upsert_all(respondents, unique_by: %i[dashboard_school_id dashboard_academic_year_id])
     end
 
     private
 
-    def self.create_enrollment_entry(row:)
-      respondent = Respondent.find_or_initialize_by(school: row.school, academic_year: row.academic_year)
-      respondent.pk = row.pk
-      respondent.k = row.k
-      respondent.one = row.one
-      respondent.two = row.two
-      respondent.three = row.three
-      respondent.four = row.four
-      respondent.five = row.five
-      respondent.six = row.six
-      respondent.seven = row.seven
-      respondent.eight = row.eight
-      respondent.nine = row.nine
-      respondent.ten = row.ten
-      respondent.eleven = row.eleven
-      respondent.twelve = row.twelve
-      respondent.total_students = row.total_students
-      respondent
+    def school_hash
+      @school_hash ||= School.by_dese_id
     end
 
-    private_class_method :create_enrollment_entry
+    def academic_year_hash
+      @academic_year_hash ||= AcademicYear.by_range
+    end
+
+    def create_enrollment_entry(row:)
+      { dashboard_school_id: row.school.id,
+        dashboard_academic_year_id: row.academic_year.id,
+        pk: row.pk,
+        k: row.k,
+        one: row.one,
+        two: row.two,
+        three: row.three,
+        four: row.four,
+        five: row.five,
+        six: row.six,
+        seven: row.seven,
+        eight: row.eight,
+        nine: row.nine,
+        ten: row.ten,
+        eleven: row.eleven,
+        twelve: row.twelve,
+        total_students: row.total_students }
+    end
   end
 
   class EnrollmentRowValues
-    attr_reader :row
+    attr_reader :row, :schools, :academic_years
 
-    def initialize(row:)
+    def initialize(row:, schools:, academic_years:)
       @row = row
+      @schools = schools
+      @academic_years = academic_years
     end
 
     def school
       @school ||= begin
         dese_id = row["DESE ID"].try(:strip).to_i
-        School.find_by_dese_id(dese_id)
+        schools[dese_id]
       end
     end
 
     def academic_year
       @academic_year ||= begin
         year = row["Academic Year"]
-        AcademicYear.find_by_range(year)
+        academic_years[year]
       end
     end
 
     def pk
-      row["PK"] || row["pk"]
+      output = row["PK"] || row["pk"]
+      output&.strip&.to_i
     end
 
     def k
-      row["K"] || row["k"]
+      output = row["K"] || row["k"]
+      output&.strip&.to_i
     end
 
     def one
-      row["1"]
+      row["1"]&.strip&.to_i
     end
 
     def two
-      row["2"]
+      row["2"]&.strip&.to_i
     end
 
     def three
-      row["3"]
+      row["3"]&.strip&.to_i
     end
 
     def four
-      row["4"]
+      row["4"]&.strip&.to_i
     end
 
     def five
-      row["5"]
+      row["5"]&.strip&.to_i
     end
 
     def six
-      row["6"]
+      row["6"]&.strip&.to_i
     end
 
     def seven
-      row["7"]
+      row["7"]&.strip&.to_i
     end
 
     def eight
-      row["8"]
+      row["8"]&.strip&.to_i
     end
 
     def nine
-      row["9"]
+      row["9"]&.strip&.to_i
     end
 
     def ten
-      row["10"]
+      row["10"]&.strip&.to_i
     end
 
     def eleven
-      row["11"]
+      row["11"]&.strip&.to_i
     end
 
     def twelve
-      row["12"]
+      row["12"]&.strip&.to_i
     end
 
     def total_students
