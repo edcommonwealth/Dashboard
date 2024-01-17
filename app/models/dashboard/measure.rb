@@ -24,17 +24,15 @@ module Dashboard
     end
 
     def student_survey_items_with_sufficient_responses(school:, academic_year:)
-      # @student_survey_items_with_sufficient_responses ||= SurveyItem.where(id: SurveyItem.joins("inner join dashboard_survey_item_responses on dashboard_survey_item_responses.survey_item_id = dashboard_survey_items.id")
-      #                                   .student_survey_items
-      #                                   .where("dashboard_survey_item_responses.school": school,
-      #                                          "dashboard_survey_item_responses.academic_year": academic_year,
-      #                                          "dashboard_survey_item_responses.survey_item_id": survey_items.student_survey_items,
-      #                                          "dashboard_survey_item_responses.grade": school.grades(academic_year:))
-      #                                   .group("survey_items.id")
-      #                                   .having("count(*) >= 10")
-      #                                   .count.keys)
-
-      @student_survey_items_with_sufficient_responses ||= student_survey_items
+      @student_survey_items_with_sufficient_responses ||= SurveyItem.where(id: SurveyItem.joins("inner join dashboard_survey_item_responses on dashboard_survey_item_responses.dashboard_survey_item_id = dashboard_survey_items.id")
+                                        .student_survey_items
+                                        .where("dashboard_survey_item_responses.dashboard_school_id": school.id,
+                                               "dashboard_survey_item_responses.dashboard_academic_year_id": academic_year.id,
+                                               "dashboard_survey_item_responses.dashboard_survey_item_id": survey_items.student_survey_items,
+                                               "dashboard_survey_item_responses.grade": school.grades(academic_year:))
+                                        .group("dashboard_survey_items.id")
+                                        .having("count(*) >= 10")
+                                        .count.keys)
     end
 
     def teacher_scales

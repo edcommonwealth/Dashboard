@@ -18,7 +18,7 @@
     <%= stylesheet_link_tag 'dashboard/welcome', media: 'all', 'data-turbo-track': 'reload' %>
 
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
-    <%= render partial: 'layouts/google_analytics', locals: { google_analytics_id: @google_analytics_id } %>
+    <%= render partial: 'layouts/dashboard/google_analytics', locals: { google_analytics_id: @google_analytics_id } %>
 </head>
 <body>
 

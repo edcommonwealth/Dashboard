@@ -5,7 +5,7 @@ module Dashboard
 
     belongs_to :school, class_name: "School", foreign_key: :dashboard_school_id
     belongs_to :survey_item, class_name: "SurveyItem", foreign_key: :dashboard_survey_item_id
-    belongs_to :academic_year, class_name: "AcademicYear", foreign_key: :dashboard_academic_year
+    belongs_to :academic_year, class_name: "AcademicYear", foreign_key: :dashboard_academic_year_id
     belongs_to :dashboard_student, optional: true
     belongs_to :dashboard_gender, optional: true
     belongs_to :dashboard_income, optional: true

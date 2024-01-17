@@ -1,9 +1,8 @@
 module Dashboard
   class Score < ApplicationRecord
-    belongs_to :dashboard_measure
-    belongs_to :school
-    belongs_to :dashboard_academic_year
-    belongs_to :dashboard_race
+    belongs_to :measure, class_name: "Measure", foreign_key: :dashboard_measure_id
+    belongs_to :school, class_name: "School", foreign_key: :dashboard_school_id
+    belongs_to :academic_year, class_name: "AcademicYear", foreign_key: :dashboard_academic_year_id
 
     NIL_SCORE = Score.new(average: nil, meets_teacher_threshold: false, meets_student_threshold: false,
                           meets_admin_data_threshold: false)
