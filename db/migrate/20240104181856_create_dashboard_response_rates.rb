@@ -4,7 +4,7 @@ class CreateDashboardResponseRates < ActiveRecord::Migration[7.1]
       t.references :dashboard_subcategory, null: false, foreign_key: true
       t.references :dashboard_school, null: false, foreign_key: true
       t.references :dashboard_academic_year, null: false, foreign_key: true
-      t.float :school_response_rate
+      t.float :student_response_rate
       t.float :teacher_response_rate
 
       t.timestamps

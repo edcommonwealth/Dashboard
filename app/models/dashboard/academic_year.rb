@@ -37,6 +37,5 @@ module Dashboard
     private_class_method :academic_years
     private_class_method :parse_year_range
   end
+  AcademicYearRange = Struct.new(:start, :end)
 end
-
-AcademicYearRange = Struct.new(:start, :end)

@@ -49,7 +49,7 @@ module Dashboard
       academic_year = AcademicYear.all.order(range: :DESC).find do |ay|
         Subcategory.all.any? do |subcategory|
           rate = subcategory.response_rate(school:, academic_year: ay)
-          rate.meets_student_threshold || rate.meets_teacher_threshold
+          rate.meets_student_threshold? || rate.meets_teacher_threshold?
         end
       end
 

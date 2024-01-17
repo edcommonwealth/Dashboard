@@ -134,7 +134,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.bigint "dashboard_subcategory_id", null: false
     t.bigint "dashboard_school_id", null: false
     t.bigint "dashboard_academic_year_id", null: false
-    t.float "school_response_rate"
+    t.float "student_response_rate"
     t.float "teacher_response_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -2,8 +2,6 @@
 
 module Dashboard
   class ResponseRateCalculator
-    TEACHER_RATE_THRESHOLD = 25
-    STUDENT_RATE_THRESHOLD = 25
     attr_reader :subcategory, :school, :academic_year
 
     def initialize(subcategory:, school:, academic_year:)
@@ -20,14 +18,6 @@ module Dashboard
       return 0 unless total_possible_responses.positive?
 
       cap_at_one_hundred(raw_response_rate).round
-    end
-
-    def meets_student_threshold?
-      rate >= STUDENT_RATE_THRESHOLD
-    end
-
-    def meets_teacher_threshold?
-      rate >= TEACHER_RATE_THRESHOLD
     end
 
     private

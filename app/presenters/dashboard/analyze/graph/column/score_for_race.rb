@@ -29,7 +29,7 @@ module Analyze
         def sufficient_student_responses?(academic_year:)
           return false unless measure.subcategory.response_rate(school:, academic_year:).meets_student_threshold?
 
-          number_of_students_for_a_racial_group = SurveyItemResponse.joins("JOIN student_races on survey_item_responses.student_id = student_races.student_id JOIN students on students.id = student_races.student_id").where(
+          number_of_students_for_a_racial_group = SurveyItemResponse.joins("JOIN student_races on dashboard_survey_item_responses.student_id = student_races.student_id JOIN students on students.id = student_races.student_id").where(
             school:, academic_year:
           ).where("student_races.race_id": race.id).distinct.pluck(:student_id).count
           number_of_students_for_a_racial_group >= 10

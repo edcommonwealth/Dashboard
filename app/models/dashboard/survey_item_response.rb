@@ -3,16 +3,16 @@ module Dashboard
     TEACHER_RESPONSE_THRESHOLD = 2
     STUDENT_RESPONSE_THRESHOLD = 10
 
-    belongs_to :school
-    belongs_to :dashboard_survey_item
-    belongs_to :dashboard_academic_year
+    belongs_to :school, class_name: "School", foreign_key: :dashboard_school_id
+    belongs_to :survey_item, class_name: "SurveyItem", foreign_key: :dashboard_survey_item_id
+    belongs_to :academic_year, class_name: "AcademicYear", foreign_key: :dashboard_academic_year
     belongs_to :dashboard_student, optional: true
     belongs_to :dashboard_gender, optional: true
     belongs_to :dashboard_income, optional: true
     belongs_to :dashboard_ell, optional: true
     belongs_to :dashboard_sped, optional: true
 
-    has_one :dashboard_measure, through: :dashboard_survey_item
+    has_one :dashboard_measure, through: :survey_item
 
     validates :likert_score, numericality: { greater_than: 0, less_than_or_equal_to: 5 }
 
@@ -61,10 +61,10 @@ module Dashboard
 
     def self.teacher_survey_items_with_sufficient_responses(school:, academic_year:)
       @teacher_survey_items_with_sufficient_responses ||= Hash.new do |memo, (school, academic_year)|
-        hash = SurveyItem.joins("inner join survey_item_responses on  survey_item_responses.survey_item_id = survey_items.id")
+        hash = SurveyItem.joins("inner join dashboard_survey_item_responses on  dashboard_survey_item_responses.dashboard_survey_item_id = dashboard_survey_items.id")
                          .teacher_survey_items
-                         .where("survey_item_responses.school": school, "survey_item_responses.academic_year": academic_year)
-                         .group("survey_items.id")
+                         .where("dashboard_survey_item_responses.dashboard_school_id": school.id, "dashboard_survey_item_responses.dashboard_academic_year_id": academic_year.id)
+                         .group("dashboard_survey_items.id")
                          .having("count(*) > 0").count
         memo[[school, academic_year]] = hash
       end
@@ -73,9 +73,9 @@ module Dashboard
 
     def self.student_survey_items_with_sufficient_responses_by_grade(school:, academic_year:)
       @student_survey_items_with_sufficient_responses_by_grade ||= Hash.new do |memo, (school, academic_year)|
-        hash = SurveyItem.joins("inner join survey_item_responses on  survey_item_responses.survey_item_id = survey_items.id")
+        hash = SurveyItem.joins("inner join dashboard_survey_item_responses on  dashboard_survey_item_responses.dashboard_survey_item_id = dashboard_survey_items.id")
                          .student_survey_items
-                         .where("survey_item_responses.school": school, "survey_item_responses.academic_year": academic_year)
+                         .where("dashboard_survey_item_responses.dashboard_school_id": school.id, "dashboard_survey_item_responses.dashboard_academic_year_id": academic_year.id)
                          .group(:grade, :id)
                          .count
         memo[[school, academic_year]] = hash

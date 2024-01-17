@@ -37,8 +37,7 @@ module Dashboard
         student = StudentResponseRateCalculator.new(subcategory: self, school:, academic_year:)
         teacher = TeacherResponseRateCalculator.new(subcategory: self, school:, academic_year:)
         memo[[school, academic_year]] = ResponseRate.new(school:, academic_year:, subcategory: self, student_response_rate: student.rate,
-                                                         teacher_response_rate: teacher.rate, meets_student_threshold: student.meets_student_threshold?,
-                                                         meets_teacher_threshold: teacher.meets_teacher_threshold?)
+                                                         teacher_response_rate: teacher.rate)
       end
 
       @response_rate[[school, academic_year]]

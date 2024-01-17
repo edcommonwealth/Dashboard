@@ -1,11 +1,11 @@
 module Dashboard
   class Measure < ApplicationRecord
     belongs_to :subcategory, class_name: "Subcategory", foreign_key: :dashboard_subcategory_id
-    has_one :dashboard_category, through: :dashboard_subcategory
-    has_many :dashboard_scales
-    has_many :dashboard_admin_data_items, through: :scales
-    has_many :dashboard_survey_items, through: :scales
-    has_many :dashboard_survey_item_responses, through: :survey_items
+    has_one :dashboard_category, through: :subcategory
+    has_many :scales, class_name: "Scale", foreign_key: :dashboard_measure_id
+    has_many :admin_data_items, through: :scales
+    has_many :survey_items, through: :scales
+    has_many :survey_item_responses, through: :survey_items
 
     def none_meet_threshold?(school:, academic_year:)
       @none_meet_threshold ||= Hash.new do |memo, (school, academic_year)|
@@ -24,15 +24,17 @@ module Dashboard
     end
 
     def student_survey_items_with_sufficient_responses(school:, academic_year:)
-      @student_survey_items_with_sufficient_responses ||= SurveyItem.where(id: SurveyItem.joins("inner join survey_item_responses on survey_item_responses.survey_item_id = survey_items.id")
-                                        .student_survey_items
-                                        .where("survey_item_responses.school": school,
-                                               "survey_item_responses.academic_year": academic_year,
-                                               "survey_item_responses.survey_item_id": survey_items.student_survey_items,
-                                               "survey_item_responses.grade": school.grades(academic_year:))
-                                        .group("survey_items.id")
-                                        .having("count(*) >= 10")
-                                        .count.keys)
+      # @student_survey_items_with_sufficient_responses ||= SurveyItem.where(id: SurveyItem.joins("inner join dashboard_survey_item_responses on dashboard_survey_item_responses.survey_item_id = dashboard_survey_items.id")
+      #                                   .student_survey_items
+      #                                   .where("dashboard_survey_item_responses.school": school,
+      #                                          "dashboard_survey_item_responses.academic_year": academic_year,
+      #                                          "dashboard_survey_item_responses.survey_item_id": survey_items.student_survey_items,
+      #                                          "dashboard_survey_item_responses.grade": school.grades(academic_year:))
+      #                                   .group("survey_items.id")
+      #                                   .having("count(*) >= 10")
+      #                                   .count.keys)
+
+      @student_survey_items_with_sufficient_responses ||= student_survey_items
     end
 
     def teacher_scales
