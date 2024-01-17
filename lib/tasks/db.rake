@@ -14,12 +14,10 @@ namespace :dashboard do
       Dir.glob("#{Dashboard::Engine.root}/data/dashboard/enrollment/*.csv").each do |file|
         seeder.seed_enrollment file
       end
-      # seeder.seed_enrollment Rails.root.join("data", "enrollment", "enrollment.csv")
-      # seeder.seed_enrollment Rails.root.join("data", "enrollment", "nj_enrollment.csv")
-      # seeder.seed_enrollment Rails.root.join("data", "enrollment", "wi_enrollment.csv")
-      # seeder.seed_staffing Rails.root.join("data", "staffing", "staffing.csv")
-      # seeder.seed_staffing Rails.root.join("data", "staffing", "nj_staffing.csv")
-      # seeder.seed_staffing Rails.root.join("data", "staffing", "wi_staffing.csv")
+
+      Dir.glob("#{Dashboard::Engine.root}/data/dashboard/staffing/*.csv").each do |file|
+        seeder.seed_staffing file
+      end
     end
   end
 end

@@ -5,14 +5,11 @@ require "csv"
 module Dashboard
   class EnrollmentLoader
     def load_data(filepath:)
-      schools = []
       enrollments = []
       CSV.parse(File.read(filepath), headers: true) do |row|
         row = EnrollmentRowValues.new(row:, schools: school_hash, academic_years: academic_year_hash)
 
         next unless row.school.present? && row.academic_year.present?
-
-        schools << row.school
 
         enrollments << create_enrollment_entry(row:)
       end

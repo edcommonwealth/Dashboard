@@ -13,11 +13,11 @@ module Dashboard
 
         schools << row.school
 
-        respondents << create_staffing_entry(row:)
+        respondents << { dashboard_school_id: row.school.id, dashboard_academic_year_id: row.academic_year.id,
+                         total_teachers: row.fte_count }
       end
 
-      Respondent.import respondents, batch_size: 1000, on_duplicate_key_update: [:total_teachers]
-      Respondent.where.not(school: schools).destroy_all
+      Respondent.upsert_all(respondents, unique_by: %i[dashboard_school_id dashboard_academic_year_id])
     end
 
     def self.clone_previous_year_data
@@ -27,23 +27,12 @@ module Dashboard
       respondents = []
       School.all.each do |school|
         Respondent.where(school:, academic_year: previous_year).each do |respondent|
-          current_respondent = Respondent.find_or_initialize_by(school:, academic_year: current_year)
-          current_respondent.total_teachers = respondent.total_teachers
-          respondents << current_respondent
+          respondents << { dashboard_school_id: respondent.school.id, dashboard_academic_year_id: current_year.id,
+                           total_teachers: respondent.total_teachers }
         end
       end
-      Respondent.import respondents, batch_size: 1000, on_duplicate_key_update: [:total_teachers]
+      Respondent.upsert_all(respondents, unique_by: %i[dashboard_school_id dashboard_academic_year_id])
     end
-
-    private
-
-    def self.create_staffing_entry(row:)
-      respondent = Respondent.find_or_initialize_by(school: row.school, academic_year: row.academic_year)
-      respondent.total_teachers = row.fte_count
-      respondent
-    end
-
-    private_class_method :create_staffing_entry
   end
 
   class StaffingRowValues
