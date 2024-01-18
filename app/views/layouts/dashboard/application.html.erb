@@ -21,8 +21,22 @@
     <%= render partial: 'layouts/dashboard/google_analytics', locals: { google_analytics_id: @google_analytics_id } %>
 </head>
 <body>
+  <div>
+    <%= render partial: 'layouts/dashboard/header' %>
+  </div>
 
-<%= yield %>
+  <div class="bg-color-light-blue">
+    <div class="container">
+      <div class="row">
+        <div class="col mt-7">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div>
+    <%= render partial: 'layouts/dashboard/footer' %>
+  </div>
 </body>
 </html>

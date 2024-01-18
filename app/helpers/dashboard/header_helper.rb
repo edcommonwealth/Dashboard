@@ -42,15 +42,15 @@ module Dashboard
     private
 
     def overview_link(district_slug:, school_slug:, academic_year_range:)
-      "/districts/#{district_slug}/schools/#{school_slug}/overview?year=#{academic_year_range}"
+      "/dashboard/districts/#{district_slug}/schools/#{school_slug}/overview?year=#{academic_year_range}"
     end
 
     def analyze_link(district_slug:, school_slug:, academic_year_range:)
-      "/districts/#{district_slug}/schools/#{school_slug}/analyze?year=#{academic_year_range}&academic_years=#{academic_year_range}"
+      "/dashboard/districts/#{district_slug}/schools/#{school_slug}/analyze?year=#{academic_year_range}&academic_years=#{academic_year_range}"
     end
 
     def browse_link(district_slug:, school_slug:, academic_year_range:)
-      "/districts/#{district_slug}/schools/#{school_slug}/browse/teachers-and-leadership?year=#{academic_year_range}"
+      "/dashboard/districts/#{district_slug}/schools/#{school_slug}/browse/teachers-and-leadership?year=#{academic_year_range}"
     end
 
     def active?(path:)
