@@ -6,7 +6,7 @@
     <div class="text-center">
       <h3 class="sub-header-3">
 
-        <%= link_to [@district, @school, category_presenter, { year: @academic_year.range }] do %>
+          <%= link_to district_school_category_path(@district, @school, category_presenter, {year: @academic_year.range}) do %>
           <%= category_presenter.name %>
         <% end %>
       </h3>

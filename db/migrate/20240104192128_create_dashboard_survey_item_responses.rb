@@ -16,5 +16,8 @@ class CreateDashboardSurveyItemResponses < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+    add_index :dashboard_survey_item_responses, %i[dashboard_school_id dashboard_academic_year_id]
+    add_index :dashboard_survey_item_responses,
+              %i[response_id dashboard_school_id dashboard_academic_year_id dashboard_survey_item_id], unique: true
   end
 end

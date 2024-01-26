@@ -225,10 +225,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_04_192128) do
     t.index ["dashboard_ell_id"], name: "index_dashboard_survey_item_responses_on_dashboard_ell_id"
     t.index ["dashboard_gender_id"], name: "index_dashboard_survey_item_responses_on_dashboard_gender_id"
     t.index ["dashboard_income_id"], name: "index_dashboard_survey_item_responses_on_dashboard_income_id"
+    t.index ["dashboard_school_id", "dashboard_academic_year_id"], name: "idx_on_dashboard_school_id_dashboard_academic_year__44af844634"
     t.index ["dashboard_school_id"], name: "index_dashboard_survey_item_responses_on_dashboard_school_id"
     t.index ["dashboard_sped_id"], name: "index_dashboard_survey_item_responses_on_dashboard_sped_id"
     t.index ["dashboard_student_id"], name: "index_dashboard_survey_item_responses_on_dashboard_student_id"
     t.index ["dashboard_survey_item_id"], name: "idx_on_dashboard_survey_item_id_3f6652fbc6"
+    t.index ["response_id", "dashboard_school_id", "dashboard_academic_year_id", "dashboard_survey_item_id"], name: "idx_on_response_id_dashboard_school_id_dashboard_ac_5b0b3359c0", unique: true
   end
 
   create_table "dashboard_survey_items", force: :cascade do |t|

@@ -1,14 +1,16 @@
+include Dashboard
+
 namespace :dashboard do
   namespace :data do
     desc "load survey responses"
     task load_survey_responses: :environment do
-      survey_item_response_count = SurveyItemResponse.count
+      survey_item_response_count = Dashboard::SurveyItemResponse.count
       student_count = Student.count
       path = "/data/survey_responses/clean/"
-      Sftp::Directory.open(path:) do |file|
-        SurveyResponsesDataLoader.new.from_file(file:)
+      ::Sftp::Directory.open(path:) do |file|
+        Dashboard::SurveyResponsesDataLoader.new.from_file(file:)
       end
-      puts "=====================> Completed loading #{SurveyItemResponse.count - survey_item_response_count} survey responses. #{SurveyItemResponse.count} total responses in the database"
+      puts "=====================> Completed loading #{Dashboard::SurveyItemResponse.count - survey_item_response_count} survey responses. #{SurveyItemResponse.count} total responses in the database"
 
       Rails.cache.clear
     end
