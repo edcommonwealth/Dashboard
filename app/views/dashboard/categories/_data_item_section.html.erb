@@ -1,0 +1,42 @@
+<div class="accordion-item">
+  <h3 class="accordion-header measure-accordion-header" id="<%= data_item_section.id %>-header">
+    <button
+      class="accordion-button measure-accordion-button collapsed"
+      data-bs-toggle="collapse"
+      data-bs-target="#<%= data_item_section.id %>"
+      aria-expanded="false"
+      aria-controls="<%= data_item_section.id %>"
+    >
+      <%= data_item_section.title %>
+      <% unless data_item_section.sufficient_data? %>
+        &nbsp;<i class="fa-solid fa-circle-exclamation" data-exclamation-point="<%= data_item_section.id  %>"></i>
+      <% end %>
+    </button>
+  </h3>
+
+  <div
+    id="<%= data_item_section.id %>"
+    class="accordion-collapse collapse"
+    aria-labelledby="<%= data_item_section.id %>-header"
+    data-bs-parent="#<%= data_item_section.data_item_accordion_id %>"
+  >
+    <div class="accordion-body measure-accordion-body font-cabin font-size-14 weight-400">
+      <% unless data_item_section.sufficient_data? %>
+        <div class="alert alert-secondary" role="alert" data-insufficient-data-message="<%= data_item_section.id + '-' + data_item_section.reason_for_insufficiency  %>">
+          Data not included due to <%= data_item_section.reason_for_insufficiency %>
+        </div>
+      <% end %>
+      <ul>
+        <% data_item_section.descriptions_and_availability.each do |data| %>
+          <li><%= data.description %>
+              <% unless data.available? %>
+                &nbsp;<i class="fa-solid fa-circle-exclamation" data-missing-data="<%= data.id %>"
+                        data-bs-toggle="popover" data-bs-placement="right"
+                        data-bs-content="Data not included due to limited availability"></i>
+              <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="d-flex flex-column align-items-center position-relative">
+  <% if ENV["SCORES"].present?  && ENV["SCORES"].upcase == "SHOW" %>
+    <p>Score is : <%= gauge.score  %> </p>
+  <% end %>
+
+<svg
+  viewBox="<%= viewbox.x %> <%= viewbox.y %> <%= viewbox.width %> <%= viewbox.height %>"
+  class="<%= gauge_class %>"
+>
+  <% if gauge.score_percentage.present? %>
+    <path
+      class="gauge-fill <%= gauge.color_class %>"
+      d="<%= move_to(point: arc_start_point) %>
+         <%= draw_arc(radius: outer_radius, percentage: gauge.score_percentage, clockwise: true) %>
+         <%= draw_line_to(point: arc_end_line_destination(radius: inner_radius, percentage: gauge.score_percentage)) %>
+         <%= draw_arc(radius: inner_radius, percentage: 0, clockwise: false) %>
+         <%= draw_line_to(point: arc_end_line_destination(radius: outer_radius, percentage: 0)) %>"
+      fill="none"
+      stroke="none"
+    />
+  <% end %>
+
+
+  <path
+    class="gauge-outline stroke-gray-2"
+    d="<%= move_to(point: arc_start_point) %>
+       <%= draw_arc(radius: outer_radius, percentage: 1, clockwise: true) %>
+       <%= draw_line_to(point: arc_end_line_destination(radius: inner_radius, percentage: 1)) %>
+       <%= draw_arc(radius: inner_radius, percentage: 0, clockwise: false) %>
+       <%= draw_line_to(point: arc_end_line_destination(radius: outer_radius, percentage: 0)) %>"
+    fill="none"
+    stroke-width="<%= stroke_width %>"
+  />
+
+  <% benchmark_boundaries = [:watch_low, :growth_low, :ideal_low]%>
+  <% benchmark_boundaries.each do |zone| %>
+    <line
+      class="zone-benchmark stroke-gray-2"
+      x1="<%= benchmark_line_point(outer_radius, angle_for(percentage: gauge.boundary_percentage_for(zone))).x %>"
+      y1="<%= benchmark_line_point(outer_radius, angle_for(percentage: gauge.boundary_percentage_for(zone))).y %>"
+      x2="<%= benchmark_line_point(inner_radius, angle_for(percentage: gauge.boundary_percentage_for(zone))).x %>"
+      y2="<%= benchmark_line_point(inner_radius, angle_for(percentage: gauge.boundary_percentage_for(zone))).y %>"
+      stroke-width="<%= stroke_width %>"
+    />
+  <% end %>
+
+  <% if gauge.key_benchmark_percentage.present? %>
+    <line
+      class="zone-benchmark stroke-black"
+      x1="<%= benchmark_line_point(outer_radius + 5, angle_for(percentage: gauge.key_benchmark_percentage)).x %>"
+      y1="<%= benchmark_line_point(outer_radius + 5, angle_for(percentage: gauge.key_benchmark_percentage)).y %>"
+      x2="<%= benchmark_line_point(inner_radius - 5 , angle_for(percentage: gauge.key_benchmark_percentage)).x %>"
+      y2="<%= benchmark_line_point(inner_radius - 5, angle_for(percentage: gauge.key_benchmark_percentage)).y %>"
+      stroke-width="<%= stroke_width + 2 %>"
+    />
+  <% end %>
+</svg>
+<span class="gauge-title <%= font_class %> fill-black"><%= gauge.title %></span>
+</div>

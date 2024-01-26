@@ -1,0 +1,59 @@
+<section class="subcategory-section">
+  <div id="<%= subcategory.id %>" class="p-7">
+    <p class="construct-id">Subcategory <%= subcategory.id %></p>
+    <h2 class="sub-header-2 font-bitter mb-7"><%= subcategory.name %></h2>
+
+    <div class="d-flex justify-content-between align-items-end">
+      <div>
+        <%= render partial: "gauge_graph", locals: { gauge: subcategory.gauge_presenter, gauge_class: 'gauge-graph-lg', font_class: 'sub-header-3' } %>
+      </div>
+      <div class="d-flex flex-column mx-7">
+        <p class="body-large "><%= subcategory.description %></p>
+
+        <div class="d-flex justify-content-start">
+          <div 
+            class="body-large text-center response-rate"
+            data-bs-toggle="popover"
+            data-bs-trigger="hover focus"
+            data-bs-content="The number of publicly available school data sources, often collected from the MA Department of Elementary and Secondary Education."
+            data-bs-placement="bottom"
+          >
+          <p class="response-rate-percentage"><%= subcategory.admin_collection_rate.first %> / <%= subcategory.admin_collection_rate.last %></p>
+            <p>school admin data sources</p>
+          </div>
+          <div 
+            class="body-large mx-3 text-center response-rate"
+            data-bs-toggle="popover"
+            data-bs-trigger="hover focus"
+            data-bs-content="The student survey response rate for this sub-category. This number differs from the overall response rate because each individual student receives 44 of 67 total questions, in order to avoid survey fatigue."
+            data-bs-placement="bottom"
+          >
+            <p class="response-rate-percentage"><%= subcategory.student_response_rate %></p>
+            <p>of students responded</p>
+          </div>
+          <div 
+            class="body-large text-center response-rate"
+            data-bs-toggle="popover"
+            data-bs-trigger="hover focus"
+            data-bs-content="The teacher survey response rate for this sub-category. This number differs from the overall response rate because the survey includes skip logic to limit the number of questions for each individual survey respondent."
+            data-bs-placement="bottom"
+          >
+            <p class="response-rate-percentage"><%= subcategory.teacher_response_rate %></p>
+            <p>of teachers responded</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-container mt-7">
+    <div class="arrow-shadow"></div>
+    <div class="arrow"></div>
+  </div>
+
+  <div class="measure-card d-flex p-7">
+    <% subcategory.measure_presenters.each do |measure_presenter| %>
+      <%= render partial: "measures_section", locals: { measure_presenter: measure_presenter } %>
+    <% end %>
+  </div>
+</section>

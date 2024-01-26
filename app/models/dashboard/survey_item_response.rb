@@ -54,7 +54,7 @@ module Dashboard
     def self.grouped_responses(school:, academic_year:)
       @grouped_responses ||= Hash.new do |memo, (school, academic_year)|
         memo[[school, academic_year]] =
-          SurveyItemResponse.where(school:, academic_year:).group(:survey_item_id).average(:likert_score)
+          SurveyItemResponse.where(school:, academic_year:).group(:dashboard_survey_item_id).average(:likert_score)
       end
       @grouped_responses[[school, academic_year]]
     end

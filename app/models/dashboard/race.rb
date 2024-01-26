@@ -1,8 +1,8 @@
 module Dashboard
   class Race < ApplicationRecord
     include FriendlyId
-    has_many :dashboard_student_races
-    has_many :dashboard_students, through: :student_races
+    has_and_belongs_to_many :students, join_table: :dashboard_student_races, class_name: "Student",
+                                       foreign_key: :dashboard_student_id, association_foreign_key: :dashboard_student_id
 
     friendly_id :designation, use: [:slugged]
 
