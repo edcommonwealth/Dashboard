@@ -7,7 +7,7 @@ module Dashboard
     end
 
     def link_to_browse(district:, school:, academic_year:)
-      "/districts/#{district.slug}/schools/#{school.slug}/browse/teachers-and-leadership?year=#{academic_year.range}"
+      "/districts/#{district.slug}/schools/#{school.slug}/browse/teachers-leadership?year=#{academic_year.range}"
     end
 
     def link_to_analyze(district:, school:, academic_year:)

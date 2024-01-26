@@ -9,6 +9,7 @@
       </div>
     <% end %>
   </nav>
+<% console %>
   <select id="select-academic-year" class="form-select" name="academic-year">
     <% @academic_years.each do |year| %>
       <option value="<%= url_for [@district, @school, @category , {year: year.range} ]%>" <%= @academic_year == year ? "selected" : nil %>><%= year.formatted_range %></option>
