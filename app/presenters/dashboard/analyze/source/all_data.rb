@@ -1,20 +1,24 @@
-module Analyze
-  module Source
-    class AllData
-      attr_reader :slices
+# frozen_string_literal: true
 
-      include Analyze::Slice
+module Dashboard
+  module Analyze
+    module Source
+      class AllData
+        attr_reader :slices
 
-      def initialize(slices:)
-        @slices = slices
-      end
+        include Analyze::Slice
 
-      def to_s
-        'All Data'
-      end
+        def initialize(slices:)
+          @slices = slices
+        end
 
-      def slug
-        'all-data'
+        def to_s
+          "All Data"
+        end
+
+        def slug
+          "all-data"
+        end
       end
     end
   end

@@ -1,20 +1,24 @@
-module Analyze
-  module Source
-    class SurveyData
-      attr_reader :slices
+# frozen_string_literal: true
 
-      include Analyze::Slice
+module Dashboard
+  module Analyze
+    module Source
+      class SurveyData
+        attr_reader :slices
 
-      def initialize(slices:)
-        @slices = slices
-      end
+        include Analyze::Slice
 
-      def to_s
-        'Survey Data Only'
-      end
+        def initialize(slices:)
+          @slices = slices
+        end
 
-      def slug
-        'survey-data-only'
+        def to_s
+          "Survey Data Only"
+        end
+
+        def slug
+          "survey-data-only"
+        end
       end
     end
   end

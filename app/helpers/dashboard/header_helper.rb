@@ -3,16 +3,16 @@
 module Dashboard
   module HeaderHelper
     def link_to_overview(district:, school:, academic_year:)
-      "/districts/#{district.slug}/schools/#{school.slug}/overview?year=#{academic_year.range}"
+      district_school_overview_index_path(district, school, year: academic_year.range)
     end
 
     def link_to_browse(district:, school:, academic_year:)
-      "/districts/#{district.slug}/schools/#{school.slug}/browse/teachers-leadership?year=#{academic_year.range}"
+      district_school_category_path(district, school, { year: academic_year.range, id: "teachers-leadership" })
     end
 
     def link_to_analyze(district:, school:, academic_year:)
       year = academic_year.range
-      "/districts/#{district.slug}/schools/#{school.slug}/analyze?year=#{year}&category=1&academic_years=#{year}"
+      district_school_analyze_index_path(district, school, { year:, category: 1, academic_years: year })
     end
 
     def district_url_for(district:, academic_year:)

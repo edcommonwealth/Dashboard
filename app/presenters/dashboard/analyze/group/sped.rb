@@ -1,12 +1,16 @@
-module Analyze
-  module Group
-    class Sped
-      def name
-        "Special Education"
-      end
+# frozen_string_literal: true
 
-      def slug
-        "sped"
+module Dashboard
+  module Analyze
+    module Group
+      class Sped
+        def name
+          "Special Education"
+        end
+
+        def slug
+          "sped"
+        end
       end
     end
   end

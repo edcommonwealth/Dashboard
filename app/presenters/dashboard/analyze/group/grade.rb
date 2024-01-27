@@ -1,12 +1,16 @@
-module Analyze
-  module Group
-    class Grade
-      def name
-        'Grade'
-      end
+# frozen_string_literal: true
 
-      def slug
-        'grade'
+module Dashboard
+  module Analyze
+    module Group
+      class Grade
+        def name
+          "Grade"
+        end
+
+        def slug
+          "grade"
+        end
       end
     end
   end

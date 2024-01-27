@@ -1,0 +1,31 @@
+<select id="select-group" name="group" class="mx-4 form-select" data-id="group-dropdown" data-action="analyze#refresh">
+  <% @presenter.groups.each do |group| %>
+    <option id="<%= group.slug %>" name="group-option" value="<%= base_url %>" <%= group.slug == @presenter.group.slug ? "Selected": "" %>><%= group.name %> </option>
+  <% end %>
+</select>
+
+<p class="sub-header-5 mx-4 mt-3 font-size-14"> Select a group </p>
+
+<% @presenter.races.each do |race| %>
+  <%= render(partial: "checkboxes", locals: {id: "race-#{race.slug}", item: race, selected_items: @presenter.selected_races, name: "race", label_text: race.designation})  %>
+<% end %>
+
+<% @presenter.grades.each do |grade| %>
+  <%= render(partial: "checkboxes", locals: {id: "grade-#{grade}", item: grade, selected_items: @presenter.selected_grades, name: "grade", label_text: grade})  %>
+<% end %>
+
+<% @presenter.genders.each do |gender| %>
+  <%= render(partial: "checkboxes", locals: {id: "gender-#{gender.designation}", item: gender, selected_items: @presenter.selected_genders, name: "gender", label_text: gender.designation})  %>
+<% end %>
+
+<% @presenter.incomes.each do |income| %>
+  <%= render(partial: "checkboxes", locals: {id: "income-#{income.slug}", item: income, selected_items: @presenter.selected_incomes, name: "income", label_text: income.label})  %>
+<% end %>
+
+<% @presenter.ells.each do |ell| %>
+  <%= render(partial: "checkboxes", locals: {id: "ell-#{ell.slug}", item: ell, selected_items: @presenter.selected_ells, name: "ell", label_text: ell.designation})  %>
+<% end %>
+
+<% @presenter.speds.each do |sped| %>
+  <%= render(partial: "checkboxes", locals: {id: "sped-#{sped.slug}", item: sped, selected_items: @presenter.selected_speds, name: "sped", label_text: sped.designation})  %>
+<% end %>

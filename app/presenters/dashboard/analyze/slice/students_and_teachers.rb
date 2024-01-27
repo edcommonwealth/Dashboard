@@ -1,16 +1,20 @@
-module Analyze
-  module Slice
-    class StudentsAndTeachers
-      def to_s
-        'Students & Teachers'
-      end
+# frozen_string_literal: true
 
-      def slug
-        'students-and-teachers'
-      end
+module Dashboard
+  module Analyze
+    module Slice
+      class StudentsAndTeachers
+        def to_s
+          "Students & Teachers"
+        end
 
-      def graphs
-        [Analyze::Graph::StudentsAndTeachers.new]
+        def slug
+          "students-and-teachers"
+        end
+
+        def graphs
+          [Analyze::Graph::StudentsAndTeachers.new]
+        end
       end
     end
   end

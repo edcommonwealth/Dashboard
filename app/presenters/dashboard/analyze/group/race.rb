@@ -1,12 +1,16 @@
-module Analyze
-  module Group
-    class Race
-      def name
-        'Race'
-      end
+# frozen_string_literal: true
 
-      def slug
-        'race'
+module Dashboard
+  module Analyze
+    module Group
+      class Race
+        def name
+          "Race"
+        end
+
+        def slug
+          "race"
+        end
       end
     end
   end

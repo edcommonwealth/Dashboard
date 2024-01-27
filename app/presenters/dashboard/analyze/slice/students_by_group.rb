@@ -1,23 +1,28 @@
-module Analyze
-  module Slice
-    class StudentsByGroup
-      attr_reader :races, :grades
+# frozen_string_literal: true
 
-      def initialize(races:, grades:)
-        @races = races
-        @grades = grades
-      end
+module Dashboard
+  module Analyze
+    module Slice
+      class StudentsByGroup
+        attr_reader :races, :grades
 
-      def to_s
-        'Students by Group'
-      end
+        def initialize(races:, grades:)
+          @races = races
+          @grades = grades
+        end
 
-      def slug
-        'students-by-group'
-      end
+        def to_s
+          "Students by Group"
+        end
 
-      def graphs
-        [Analyze::Graph::StudentsByRace.new(races:), Analyze::Graph::StudentsByGrade.new(grades:)]
+        def slug
+          "students-by-group"
+        end
+
+        def graphs
+          [Analyze::Graph::StudentsByRace.new(races:),
+           Analyze::Graph::StudentsByGrade.new(grades:)]
+        end
       end
     end
   end

@@ -1,12 +1,16 @@
-module Analyze
-  module Group
-    class Income
-      def name
-        'Income'
-      end
+# frozen_string_literal: true
 
-      def slug
-        'income'
+module Dashboard
+  module Analyze
+    module Group
+      class Income
+        def name
+          "Income"
+        end
+
+        def slug
+          "income"
+        end
       end
     end
   end
