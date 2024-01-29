@@ -25,7 +25,7 @@ module Dashboard
             end
 
             def gender
-              ::Gender.find_by_qualtrics_code 4
+              Gender.find_by_qualtrics_code 4
             end
           end
         end

@@ -6,13 +6,13 @@ module Dashboard
     belongs_to :school, class_name: "School", foreign_key: :dashboard_school_id
     belongs_to :survey_item, class_name: "SurveyItem", foreign_key: :dashboard_survey_item_id
     belongs_to :academic_year, class_name: "AcademicYear", foreign_key: :dashboard_academic_year_id
-    belongs_to :dashboard_student, optional: true
-    belongs_to :dashboard_gender, optional: true
-    belongs_to :dashboard_income, optional: true
-    belongs_to :dashboard_ell, optional: true
-    belongs_to :dashboard_sped, optional: true
+    belongs_to :student, optional: true, class_name: "Student", foreign_key: :dashboard_student_id
+    belongs_to :gender, optional: true, class_name: "Gender", foreign_key: :dashboard_gender_id
+    belongs_to :income, optional: true, class_name: "Income", foreign_key: :dashboard_income_id
+    belongs_to :ell, optional: true, class_name: "Ell", foreign_key: :dashboard_ell_id
+    belongs_to :sped, optional: true, class_name: "Sped", foreign_key: :dashboard_sped_id
 
-    has_one :dashboard_measure, through: :survey_item
+    has_one :measure, through: :survey_item
 
     validates :likert_score, numericality: { greater_than: 0, less_than_or_equal_to: 5 }
 

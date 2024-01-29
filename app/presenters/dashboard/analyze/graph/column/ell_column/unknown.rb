@@ -25,7 +25,7 @@ module Dashboard
             end
 
             def ell
-              Ell.find_by_slug "unknown"
+              Dashboard::Ell.find_by_slug "unknown"
             end
           end
         end

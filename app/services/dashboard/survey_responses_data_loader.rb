@@ -85,9 +85,10 @@ module Dashboard
 
     def process_survey_items(row:)
       student = Student.find_or_create_by(response_id: row.response_id, lasid: row.lasid)
-      # student.races.delete_all
-      # tmp_races = row.races.map { |race| races[race] }
-      # student.races += tmp_races
+      student.races.delete_all
+      tmp_races = row.races.map { |race| races[race] }
+      student.races += tmp_races
+      student.save
 
       row.survey_items.map do |survey_item|
         likert_score = row.likert_score(survey_item_id: survey_item.survey_item_id) || next
@@ -97,11 +98,11 @@ module Dashboard
           next
         end
         response = row.survey_item_response(survey_item:)
-        build_response(survey_item_response: response, likert_score:, row:, survey_item:, student:)
+        build_response(survey_item_response: response, likert_score:, row:, survey_item:)
       end.compact
     end
 
-    def build_response(survey_item_response:, likert_score:, row:, survey_item:, student:)
+    def build_response(survey_item_response:, likert_score:, row:, survey_item:)
       gender = genders[row.gender]
       grade = row.grade
       income = incomes[row.income.parameterize]

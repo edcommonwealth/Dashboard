@@ -26,7 +26,7 @@ module Dashboard
             end
 
             def sped
-              ::Sped.find_by_slug "special-education"
+              Dashboard::Sped.find_by_slug "special-education"
             end
           end
         end

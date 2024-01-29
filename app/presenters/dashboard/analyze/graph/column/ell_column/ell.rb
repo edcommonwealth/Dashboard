@@ -25,7 +25,7 @@ module Dashboard
             end
 
             def ell
-              ::Ell.find_by_slug "ell"
+              Dashboard::Ell.find_by_slug "ell"
             end
           end
         end

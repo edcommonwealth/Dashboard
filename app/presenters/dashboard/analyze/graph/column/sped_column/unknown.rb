@@ -26,7 +26,7 @@ module Dashboard
             end
 
             def sped
-              ::Sped.find_by_slug "unknown"
+              Dashboard::Sped.find_by_slug "unknown"
             end
           end
         end
