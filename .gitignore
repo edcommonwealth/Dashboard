@@ -8,4 +8,5 @@
 /spec/dummy/tmp/
 /spec/dummy/.byebug_history
 /spec/dummy/node_modules/
+/spec/dummy/log/development.log.0
 /node_modules/
