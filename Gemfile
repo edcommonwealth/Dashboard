@@ -11,6 +11,7 @@ gem "pg"
 gem "sprockets-rails"
 
 group :development, :test do
+  gem "annotate"
   gem "debug"
   gem "web-console"
 end
