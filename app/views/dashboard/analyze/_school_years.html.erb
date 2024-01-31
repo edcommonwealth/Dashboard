@@ -21,7 +21,7 @@
     <% if graph.slug == 'all-data' && empty_dataset %>
       <i class="fa-solid fa-circle-exclamation px-3"
         data-bs-toggle="popover" data-bs-placement="right"
-        data-bs-content="No admin data OR teacher and student survey response rates below <%= Dashboard::ResponseRate::TEACHER_RATE_THRESHOLD %>%">
+        data-bs-content="No school data OR teacher and student survey response rates below <%= Dashboard::ResponseRate::TEACHER_RATE_THRESHOLD %>%">
       </i>
     <% end %>
     <% if graph.slug != 'all-data' && empty_survey_dataset %>

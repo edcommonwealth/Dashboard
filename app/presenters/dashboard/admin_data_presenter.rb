@@ -8,7 +8,7 @@ module Dashboard
     end
 
     def title
-      "School admin data"
+      "School data"
     end
 
     def id

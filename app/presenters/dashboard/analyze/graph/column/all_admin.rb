@@ -6,11 +6,11 @@ module Dashboard
       module Column
         class AllAdmin < GroupedBarColumnPresenter
           def label
-            %w[All Admin]
+            %w[School data]
           end
 
           def basis
-            "admin data"
+            "school data"
           end
 
           def show_irrelevancy_message?
