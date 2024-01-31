@@ -32,9 +32,9 @@ module Dashboard
           def sufficient_student_responses?(academic_year:)
             return false unless measure.subcategory.response_rate(school:, academic_year:).meets_student_threshold?
 
-            number_of_students_for_a_racial_group = SurveyItemResponse.joins("JOIN student_races on dashboard_survey_item_responses.student_id = student_races.student_id JOIN students on students.id = student_races.student_id").where(
+            number_of_students_for_a_racial_group = SurveyItemResponse.joins("JOIN dashboard_student_races on dashboard_survey_item_responses.dashboard_student_id = dashboard_student_races.dashboard_student_id JOIN dashboard_students on dashboard_students.id = dashboard_student_races.dashboard_student_id").where(
               school:, academic_year:
-            ).where("student_races.race_id": race.id).distinct.pluck(:student_id).count
+            ).where("dashboard_student_races.dashboard_race_id": race.id).distinct.pluck(:dashboard_student_id).count
             number_of_students_for_a_racial_group >= 10
           end
         end

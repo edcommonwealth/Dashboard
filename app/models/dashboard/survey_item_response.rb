@@ -46,9 +46,9 @@ module Dashboard
     }
 
     scope :averages_for_race, lambda { |school, academic_year, race|
-      SurveyItemResponse.joins("JOIN student_races on survey_item_responses.student_id = student_races.student_id JOIN students on students.id = student_races.student_id").where(
+      SurveyItemResponse.joins("JOIN dashboard_student_races on dashboard_survey_item_responses.dashboard_student_id = dashboard_student_races.dashboard_student_id JOIN dashboard_students on dashboard_students.id = dashboard_student_races.dashboard_student_id").where(
         school:, academic_year:, grade: school.grades(academic_year:)
-      ).where("student_races.race_id": race.id).group(:survey_item_id).having("count(*) >= 10").average(:likert_score)
+      ).where("dashboard_student_races.dashboard_race_id": race.id).group(:dashboard_survey_item_id).having("count(*) >= 10").average(:likert_score)
     }
 
     def self.grouped_responses(school:, academic_year:)

@@ -87,7 +87,9 @@ module Dashboard
       student = Student.find_or_create_by(response_id: row.response_id, lasid: row.lasid)
       student.races.delete_all
       tmp_races = row.races.map { |race| races[race] }
-      student.races += tmp_races
+      tmp_races.each do |race|
+        student.races << race
+      end
       student.save
 
       row.survey_items.map do |survey_item|
@@ -98,11 +100,11 @@ module Dashboard
           next
         end
         response = row.survey_item_response(survey_item:)
-        build_response(survey_item_response: response, likert_score:, row:, survey_item:)
+        build_response(survey_item_response: response, likert_score:, row:, survey_item:, student:)
       end.compact
     end
 
-    def build_response(survey_item_response:, likert_score:, row:, survey_item:)
+    def build_response(survey_item_response:, likert_score:, row:, survey_item:, student:)
       gender = genders[row.gender]
       grade = row.grade
       income = incomes[row.income.parameterize]
@@ -120,7 +122,8 @@ module Dashboard
         recorded_date:,
         dashboard_income_id: income.id,
         dashboard_ell_id: ell.id,
-        dashboard_sped_id: sped.id }
+        dashboard_sped_id: sped.id,
+        dashboard_student_id: student.id }
     end
 
     def survey_items(headers:)
