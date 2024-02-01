@@ -14,6 +14,7 @@ module Dashboard
       Dir.glob(Rails.root.join(input_filepath, "*.csv")).each do |filepath|
         puts filepath
         File.open(filepath) do |file|
+          puts "opening file"
           processed_data = process_raw_file(file:)
           processed_data in [headers, clean_csv, log_csv, data]
           return if data.empty?

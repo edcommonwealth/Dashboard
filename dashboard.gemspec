@@ -30,10 +30,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency "net-sftp"
   spec.add_dependency "rails", ">= 7.1.2"
   spec.add_dependency "rspec-rails"
-  spec.add_dependency "standard_deviation"
   spec.add_dependency "stimulus-rails"
   spec.add_dependency "turbo-rails"
   spec.add_dependency "watir"
 
   spec.add_development_dependency "factory_bot_rails"
+  spec.add_development_dependency "standard_deviation"
 end
