@@ -42,7 +42,15 @@ module Dashboard
         row.school.name
       end.to_set
 
-      part = filepath&.match(/[\b\s_.]+(part|form)[\W*_](?<label>[\w\d])/i)&.named_captures&.[]("label")&.upcase
+      part = filepath&.match(/(part|form)[\W*_\s]*(?<label>[a-zA-Z\d]*)/i)&.named_captures&.[]("label")&.upcase
+
+      # Finds the number of the form and changes it to a letter equivalent, e.g Part 1 becomes Part A.  Only supports 26 parts. If it's already in then correct form (Part A), it makes no alterations.
+      if part.present?
+        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        index = part.to_i
+        part = alphabet[index - 1] if index > 0
+        part
+      end
 
       school_name = schools.first.parameterize
 
