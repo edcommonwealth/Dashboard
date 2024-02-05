@@ -3,7 +3,6 @@
 module Dashboard
   class SurveyResponsesDataLoader
     def load_data(filepath:)
-      byebug
       File.open(filepath) do |file|
         headers = file.first
         headers_array = CSV.parse(headers).first
@@ -14,7 +13,9 @@ module Dashboard
             process_row(row: SurveyItemValues.new(row:, headers: headers_array, survey_items: all_survey_items,
                                                   schools:))
           end
-          SurveyItemResponse.upsert_all(survey_item_responses, unique_by: :response_id)
+          SurveyItemResponse.upsert_all(survey_item_responses.flatten.compact,
+                                        unique_by: %i[response_id dashboard_academic_year_id dashboard_school_id
+                                                      dashboard_survey_item_id])
         end
       end
     end

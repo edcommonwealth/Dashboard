@@ -8,5 +8,8 @@ class CreateDashboardAdminDataValues < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :dashboard_admin_data_values,
+              %i[dashboard_admin_data_item_id dashboard_school_id dashboard_academic_year_id], unique: true
   end
 end
