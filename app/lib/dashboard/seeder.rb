@@ -1,3 +1,5 @@
+require "csv"
+
 module Dashboard
   class Seeder
     def seed_academic_years(*academic_year_ranges)
