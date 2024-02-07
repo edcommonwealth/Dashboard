@@ -3,13 +3,13 @@
 module Dashboard
   class SurveyResponsesDataLoader
     def load_data(filepath:)
-      File.open(filepath) do |file|
+      ::File.open(filepath) do |file|
         headers = file.first
-        headers_array = CSV.parse(headers).first
+        headers_array = ::CSV.parse(headers).first
         all_survey_items = survey_items(headers:)
 
         file.lazy.each_slice(500) do |lines|
-          survey_item_responses = CSV.parse(lines.join, headers:).map do |row|
+          survey_item_responses = ::CSV.parse(lines.join, headers:).map do |row|
             process_row(row: SurveyItemValues.new(row:, headers: headers_array, survey_items: all_survey_items,
                                                   schools:))
           end
@@ -22,7 +22,7 @@ module Dashboard
 
     def from_file(file:)
       headers = file.gets
-      headers_array = CSV.parse(headers).first
+      headers_array = ::CSV.parse(headers).first
       all_survey_items = survey_items(headers:)
 
       survey_item_responses = []
@@ -31,7 +31,7 @@ module Dashboard
         line = file.gets
         next unless line.present?
 
-        CSV.parse(line, headers:).map do |row|
+        ::CSV.parse(line, headers:).map do |row|
           values = process_row(row: SurveyItemValues.new(row:, headers: headers_array,
                                                          survey_items: all_survey_items, schools:))
           survey_item_responses << values if values.present?
@@ -132,9 +132,9 @@ module Dashboard
     end
 
     def get_survey_item_ids_from_headers(headers:)
-      CSV.parse(headers).first
-         .filter(&:present?)
-         .filter { |header| header.start_with? "t-", "s-" }
+      ::CSV.parse(headers).first
+           .filter(&:present?)
+           .filter { |header| header.start_with? "t-", "s-" }
     end
   end
 end

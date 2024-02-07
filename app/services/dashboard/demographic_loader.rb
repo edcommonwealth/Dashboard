@@ -5,7 +5,7 @@ require "csv"
 module Dashboard
   class DemographicLoader
     def self.load_data(filepath:)
-      CSV.parse(File.read(filepath), headers: true) do |row|
+      ::CSV.parse(::File.read(filepath), headers: true) do |row|
         process_race(row:)
         process_gender(row:)
         create_from_column(column: "Income", row:, model: Income)

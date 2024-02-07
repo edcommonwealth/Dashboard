@@ -13,7 +13,7 @@ module Dashboard
     def clean
       Dir.glob(Rails.root.join(input_filepath, "*.csv")).each do |filepath|
         puts filepath
-        File.open(filepath) do |file|
+        ::File.open(filepath) do |file|
           puts "opening file"
           processed_data = process_raw_file(file:)
           processed_data in [headers, clean_csv, log_csv, data]
@@ -67,7 +67,7 @@ module Dashboard
       clean_csv = []
       log_csv = []
       data = []
-      headers = CSV.parse(file.first).first
+      headers = ::CSV.parse(file.first).first
       duplicate_header = headers.detect { |header| headers.count(header) > 1 }
       unless duplicate_header.nil?
         puts "\n>>>>>>>>>>>>>>>>>>    Duplicate header found.  This will misalign column headings.  Please delete or rename the duplicate column: #{duplicate_header} \n>>>>>>>>>>>>>> \n"
@@ -85,7 +85,7 @@ module Dashboard
       all_survey_items = survey_items(headers:)
 
       file.lazy.each_slice(1000) do |lines|
-        CSV.parse(lines.join, headers:).map do |row|
+        ::CSV.parse(lines.join, headers:).map do |row|
           values = SurveyItemValues.new(row:, headers:,
                                         survey_items: all_survey_items, schools:)
           next unless values.valid_school?
@@ -121,12 +121,12 @@ module Dashboard
     end
 
     def write_csv(data:, output_filepath:, filename:, prefix: "")
-      csv = CSV.generate do |csv|
+      csv = ::CSV.generate do |csv|
         data.each do |row|
           csv << row
         end
       end
-      File.write(output_filepath.join(prefix + filename), csv)
+      ::File.write(output_filepath.join(prefix + filename), csv)
     end
 
     def schools
@@ -145,11 +145,11 @@ module Dashboard
     end
 
     def create_ouput_directory
-      FileUtils.mkdir_p output_filepath
+      ::FileUtils.mkdir_p output_filepath
     end
 
     def create_log_directory
-      FileUtils.mkdir_p log_filepath
+      ::FileUtils.mkdir_p log_filepath
     end
   end
 end

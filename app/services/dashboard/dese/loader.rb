@@ -5,7 +5,7 @@ module Dashboard
     class Loader
       def self.load_data(filepath:)
         admin_data_values = []
-        CSV.parse(File.read(filepath), headers: true) do |row|
+        ::CSV.parse(::File.read(filepath), headers: true) do |row|
           score = likert_score(row:)
           next unless valid_likert_score(likert_score: score)
 

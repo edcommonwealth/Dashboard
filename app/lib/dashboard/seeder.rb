@@ -12,7 +12,7 @@ module Dashboard
     def seed_districts_and_schools(csv_file)
       dese_ids = []
       schools = []
-      CSV.parse(File.read(csv_file), headers: true) do |row|
+      ::CSV.parse(::File.read(csv_file), headers: true) do |row|
         district_name = row["District"].strip
 
         district_code = row["District Code"].try(:strip)
@@ -39,7 +39,7 @@ module Dashboard
 
     def seed_sqm_framework(csv_file)
       admin_data_item_ids = []
-      CSV.parse(File.read(csv_file), headers: true) do |row|
+      ::CSV.parse(::File.read(csv_file), headers: true) do |row|
         category_id = row["Category ID"].strip
         category_name = row["Category"].strip
         category = Category.find_or_create_by!(category_id:)

@@ -7,7 +7,7 @@ namespace :dashboard do
       qualtrics_schools = {}
 
       csv_file = Rails.root.join("data", "master_list_of_schools_and_districts.csv")
-      CSV.parse(File.read(csv_file), headers: true) do |row|
+      ::CSV.parse(::File.read(csv_file), headers: true) do |row|
         district_id = row["District Code"].to_i
         school_id = row["School Code"].to_i
 

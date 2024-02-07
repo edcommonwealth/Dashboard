@@ -7,7 +7,7 @@ module Dashboard
     def self.load_data(filepath:)
       schools = []
       respondents = []
-      CSV.parse(File.read(filepath), headers: true) do |row|
+      ::CSV.parse(::File.read(filepath), headers: true) do |row|
         row = StaffingRowValues.new(row:)
         next unless row.school.present? && row.academic_year.present?
 

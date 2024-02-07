@@ -76,7 +76,7 @@ module Dashboard
         @teachers ||= {}
         @years_with_data ||= Set.new
         if @teachers.count == 0
-          CSV.parse(File.read(filepath), headers: true).map do |row|
+          ::CSV.parse(::File.read(filepath), headers: true).map do |row|
             academic_year = row["Academic Year"]
             @years_with_data << academic_year
             school_id = row["DESE ID"].to_i

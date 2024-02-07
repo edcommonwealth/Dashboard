@@ -26,7 +26,7 @@ module Dashboard
       def student_count(filepath:, dese_id:, year:)
         @students ||= {}
         if @students.count == 0
-          CSV.parse(File.read(filepath), headers: true).map do |row|
+          ::CSV.parse(::File.read(filepath), headers: true).map do |row|
             academic_year = row["Academic Year"]
             school_id = row["DESE ID"].to_i
             total = row["Total"].gsub(",", "").to_i

@@ -1,0 +1,12 @@
+# This migration comes from dashboard (originally 20240104173931)
+class CreateDashboardDistricts < ActiveRecord::Migration[7.1]
+  def change
+    create_table :dashboard_districts do |t|
+      t.string :name
+      t.string :slug
+      t.integer :qualtrics_code
+
+      t.timestamps
+    end
+  end
+end

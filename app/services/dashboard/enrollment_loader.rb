@@ -6,7 +6,7 @@ module Dashboard
   class EnrollmentLoader
     def load_data(filepath:)
       enrollments = []
-      CSV.parse(File.read(filepath), headers: true) do |row|
+      ::CSV.parse(::File.read(filepath), headers: true) do |row|
         row = EnrollmentRowValues.new(row:, schools: school_hash, academic_years: academic_year_hash)
 
         next unless row.school.present? && row.academic_year.present?
