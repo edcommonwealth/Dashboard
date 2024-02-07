@@ -6,7 +6,7 @@ module Dashboard
         academic_years << { range: }
       end
 
-      AcademicYear.upsert_all(academic_years, unique_by: :range)
+      Dashboard::AcademicYear.upsert_all(academic_years, unique_by: :range)
     end
 
     def seed_districts_and_schools(csv_file)
