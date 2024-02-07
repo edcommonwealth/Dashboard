@@ -9,11 +9,9 @@ module Dashboard
       attr_reader :filepaths
 
       def initialize(filepaths:
-        [Dashboard::Engine.root.join("data", "dashboard", "admin_data", "dese", "enrollments.csv"),
-         Dashboard::Engine.root.join("data", "dashboard", "admin_data", "dese",
-                                     "3A_2_age_staffing.csv"),
-         Dashboard::Engine.root.join("data", "dashboard", "admin_data", "dese",
-                                     "3A_2_grade_subject_staffing.csv")])
+        [Dashboard::Engine.root.join("data", "admin_data", "dese", "enrollments.csv"),
+         Dashboard::Engine.root.join("data", "admin_data", "dese", "3A_2_age_staffing.csv"),
+         Dashboard::Engine.root.join("data", "admin_data", "dese", "3A_2_grade_subject_staffing.csv")])
 
         @filepaths = filepaths
       end

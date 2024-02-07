@@ -6,7 +6,7 @@ module Dashboard
       include Dashboard::Dese::Scraper
       attr_reader :filepath
 
-      def initialize(filepath: Dashboard::Engine.root.join("data", "dashboard", "staffing", "staffing.csv"))
+      def initialize(filepath: Dashboard::Engine.root.join("data", "staffing", "staffing.csv"))
         @filepath = filepath
       end
 
