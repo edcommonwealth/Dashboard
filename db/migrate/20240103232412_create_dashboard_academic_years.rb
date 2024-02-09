@@ -6,6 +6,6 @@ class CreateDashboardAcademicYears < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    add_index :dashboard_academic_years, :range, unique: true
+    add_index :dashboard_academic_years, :range, unique: true, name: "dashboard_range"
   end
 end
