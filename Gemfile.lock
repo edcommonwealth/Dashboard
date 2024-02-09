@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dashboard (0.1.15)
+    dashboard (0.1.16)
       bcrypt_pbkdf
       cssbundling-rails
       ed25519
