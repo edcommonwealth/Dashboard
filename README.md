@@ -16,9 +16,25 @@ And then execute:
 $ bundle
 ```
 
-And run the migrations:
+And install the migrations:
 ```bash
 ./bin/rails dashboard:install:migrations
+```
+
+Run the migration:
+```bash
+./bin/rails db:migrate
+```
+
+Mount the engine to your desired route:
+```bash
+  mount Dashboard::Engine, at: "dashboard"
+```
+
+Navigate to the dashboard page:
+If run in development: 
+```
+http://localhost:3000/dashboard/welcome
 ```
 
 Install javascript bundler
